@@ -1,15 +1,18 @@
 # Deploy via Git — projeto55100
 
-Documentação do fluxo de publicação automática via Git entre GitHub e KingHost (habilidade.com).
+Documentação do fluxo completo de publicação automática via Git entre GitHub e KingHost (habilidade.com).
+Inclui diagnóstico, causa raiz e sequência exata que resolveu o problema em 02/06/2026.
 
 ---
 
 ## Estrutura de Repositórios
 
-| Repositório GitHub                             | Branch | Diretório KingHost  |
-| ---------------------------------------------- | ------ | ------------------- |
-| `git@github.com:git-GMHammes/projeto55100.git` | `main` | `/www/projeto55100` |
-| `git@github.com:git-GMHammes/projeto56300.git` | `main` | `/www/projeto56300` |
+| Repositório GitHub                             | Branch | Diretório KingHost      |
+| ---------------------------------------------- | ------ | ----------------------- |
+| `git@github.com:git-GMHammes/projeto55100.git` | `main` | `~/www/projeto55100`    |
+| `git@github.com:git-GMHammes/projeto56300.git` | `main` | `~/www/projeto56300`    |
+
+**Atenção:** O painel KingHost exibe o caminho como `/www/projeto55100`, mas o caminho real no servidor SSH é `~/www/projeto55100` (`/home/habilidade/www/projeto55100`).
 
 ---
 
@@ -24,14 +27,14 @@ Documentação do fluxo de publicação automática via Git entre GitHub e KingH
       |
       | Webhook HTTP -> painel.kinghost.com.br
       v
-[ KingHost ]
+[ KingHost — processo interno ]
       |
-      | git pull (usando Deploy Key SSH)
+      | git pull (usando chave SSH da conta KingHost)
       v
-[ /www/projeto55100 ]
+[ ~/www/projeto55100 ]
 ```
 
-O GitHub notifica a KingHost via webhook a cada push. A KingHost faz `git pull` autenticado pela Deploy Key SSH cadastrada no repositório.
+O GitHub notifica a KingHost via webhook a cada push. A KingHost executa `git pull` autenticado pela chave SSH registrada na conta GitHub (`kinghost_key_202605021225`).
 
 ---
 
@@ -45,54 +48,163 @@ Configurado automaticamente pelo painel KingHost em:
 
 ---
 
-## Deploy Key SSH — Configuracao
+## Autenticacao SSH — Como a KingHost Acessa o GitHub
 
-### Por que e necessaria
+### Chave da conta KingHost (nivel de conta GitHub)
 
-O GitHub exige autenticacao SSH para que servidores externos (KingHost) facam `git pull` em repositorios. A Deploy Key e uma chave SSH publica cadastrada diretamente no repositorio.
+A KingHost registra automaticamente uma chave SSH na conta GitHub do usuario durante o cadastro inicial via painel. Essa chave opera no nivel da conta (nao por repositorio), dando acesso a todos os repos do usuario.
 
-### Regras do GitHub para Deploy Keys
+- Nome no GitHub: `kinghost_key_202605021225`
+- Adicionada por: `Kinghost Deploy` em 02/05/2026
+- Localizacao no GitHub: `github.com/settings/keys` (SSH and GPG keys)
+- Acesso: Read/write em todos os repos da conta `git-GMHammes`
 
-- Cada repositorio aceita suas proprias Deploy Keys
-- **A mesma chave publica nao pode ser usada como Deploy Key em dois repositorios diferentes**
-- Por isso, foi gerada uma chave dedicada por projeto no servidor KingHost
+Essa chave e gerenciada internamente pela KingHost. Nao e necessario manipula-la.
 
-### Chave gerada no servidor KingHost
+### Deploy Keys por repositorio (geradas para diagnostico)
 
-Gerada via SSH (PuTTY) conectado em `web36f42.kinghost.net` com o usuario `habilidade`:
+Durante o diagnostico foram geradas chaves dedicadas no servidor via PuTTY:
 
 ```bash
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa_55100 -N ""
 cat ~/.ssh/id_rsa_55100.pub
 ```
 
-A chave publica gerada foi cadastrada em:
-`GitHub -> git-GMHammes/projeto55100 -> Settings -> Deploy keys -> Add deploy key`
+A chave publica foi cadastrada em:
+`GitHub -> git-GMHammes/projeto55100 -> Settings -> Deploy keys`
 
-- **Title:** `kinghost-deploy`
-- **Allow write access:** NAO (somente leitura)
+- Title: `kinghost-deploy`
+- Allow write access: NAO
 
-### Configuracao do SSH no servidor KingHost
+### Configuracao do ~/.ssh/config no servidor
 
-Para que o servidor use a chave correta ao conectar no GitHub:
+Para que o usuario `habilidade` use a chave correta ao conectar no GitHub via shell:
 
 ```bash
 echo -e "Host github.com\n  IdentityFile ~/.ssh/id_rsa_55100\n  StrictHostKeyChecking no" >> ~/.ssh/config
+chmod 600 ~/.ssh/config
 ```
+
+O `chmod 600` e obrigatorio — o SSH rejeita o arquivo se as permissoes estiverem abertas:
+`Bad owner or permissions on /home/habilidade/.ssh/config`
 
 Teste de conexao:
 
 ```bash
 ssh -T git@github.com
-# Resposta esperada: Hi git-GMHammes! You've successfully authenticated...
+# Resposta esperada: Hi git-GMHammes/projeto55100! You've successfully authenticated...
 ```
+
+---
+
+## CAUSA RAIZ DO PROBLEMA — Permissao do Diretorio
+
+### Sintoma
+
+Webhooks chegavam com hashes corretos no log do painel KingHost, mas nenhum arquivo aparecia em `~/www/projeto55100`.
+
+### Diagnostico
+
+```bash
+stat ~/www/projeto55100
+# Access: (0755/drwxr-xr-x)  <-- PROBLEMA
+
+stat ~/www/projeto56300
+# Access: (0777/drwxrwxrwx)  <-- correto, deploy funcionava
+```
+
+O diretorio `projeto55100` foi criado via FTP com permissao padrao `0755`.
+O processo interno da KingHost roda como um usuario de sistema diferente de `habilidade` e nao tem permissao de escrita em diretorios `755`.
+
+O `projeto56300` tinha `0777` — por isso funcionava.
+
+### Solucao
+
+```bash
+chmod 777 ~/www/projeto55100
+```
+
+---
+
+## Primeiro Deploy — Clone Manual via SSH
+
+Na primeira vez, ou apos recriar o diretorio, a KingHost pode nao conseguir fazer o clone inicial automaticamente. Nesse caso, executar manualmente via PuTTY:
+
+```bash
+git clone git@github.com:git-GMHammes/projeto55100.git ~/www/projeto55100
+```
+
+Apos o clone inicial, os deploys subsequentes ocorrem automaticamente via webhook a cada `git push`.
+
+Se o diretorio ja existir com conteudo, usar pull:
+
+```bash
+git -C ~/www/projeto55100 pull
+```
+
+---
+
+## Diagnostico de Acesso ao Repositorio
+
+Para testar se uma chave especifica consegue acessar o repositorio:
+
+```bash
+# Testar com chave padrao
+GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
+  git clone git@github.com:git-GMHammes/projeto55100.git /tmp/test55100 2>&1
+
+# Testar com chave dedicada
+GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_55100 -o StrictHostKeyChecking=no" \
+  git clone git@github.com:git-GMHammes/projeto55100.git /tmp/test55100_b 2>&1
+```
+
+Limpar apos o teste:
+
+```bash
+rm -rf /tmp/test55100 /tmp/test55100_b
+```
+
+---
+
+## Sequencia Completa que Resolveu o Deploy
+
+1. Gerar chave SSH dedicada no servidor KingHost via PuTTY:
+   ```bash
+   ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa_55100 -N ""
+   cat ~/.ssh/id_rsa_55100.pub
+   ```
+
+2. Adicionar a chave publica como Deploy Key no GitHub:
+   `github.com/git-GMHammes/projeto55100/settings/keys -> Add deploy key`
+
+3. Configurar `~/.ssh/config` e corrigir permissoes:
+   ```bash
+   echo -e "Host github.com\n  IdentityFile ~/.ssh/id_rsa_55100\n  StrictHostKeyChecking no" >> ~/.ssh/config
+   chmod 600 ~/.ssh/config
+   ```
+
+4. Verificar autenticacao:
+   ```bash
+   ssh -T git@github.com
+   ```
+
+5. Corrigir permissao do diretorio de deploy:
+   ```bash
+   chmod 777 ~/www/projeto55100
+   ```
+
+6. Executar clone inicial:
+   ```bash
+   git clone git@github.com:git-GMHammes/projeto55100.git ~/www/projeto55100
+   ```
+
+7. Fazer um push qualquer para validar o webhook automatico.
 
 ---
 
 ## Placeholders — Referencia de Credenciais
 
 > As credenciais reais nunca devem ser registradas em arquivos versionados.
-> Use variaveis de ambiente ou cofre de senhas.
 
 | Item                         | Onde fica                          | Formato esperado                           |
 | ---------------------------- | ---------------------------------- | ------------------------------------------ |
@@ -109,21 +221,15 @@ ssh -T git@github.com
 # Editar arquivos em:
 # C:\laragon\www\php\habilidade\projeto55100\
 
-# Verificar status
 git status
-
-# Adicionar alteracoes
 git add nome-do-arquivo.php
-
-# Commit
 git commit -m "descricao da alteracao"
-
-# Push — dispara o deploy automatico na KingHost
 git push origin main
+# O push dispara o deploy automatico na KingHost
 ```
 
 Apos o push, verificar em:
-`painel.kinghost.com.br -> Publicacao via GIT -> Ver logs de Publicacoes`
+`painel.kinghost.com.br -> Publicacao via GIT -> Ver logs de Webhooks`
 
 ---
 
@@ -131,25 +237,37 @@ Apos o push, verificar em:
 
 ### Log mostra 000000000000 em Revisao Antes
 
-Significa que o KingHost nunca conseguiu fazer o clone inicial.
+O KingHost recebeu o webhook mas nunca fez o clone inicial.
 Causa: Deploy Key nao cadastrada ou chave errada no GitHub.
-Solucao: Verificar GitHub -> Settings -> Deploy keys e recadastrar a aplicacao no painel KingHost.
+Solucao: Verificar GitHub -> Settings -> Deploy keys e recadastrar no painel KingHost.
 
 ### Erro Key is already in use no GitHub
 
-O GitHub nao permite a mesma chave publica em dois repositorios diferentes.
-Solucao: Gerar nova chave dedicada com nome diferente (id_rsa_55100, id_rsa_56300, etc.).
+O GitHub nao permite a mesma chave publica como Deploy Key em dois repositorios.
+Solucao: Gerar chave dedicada por projeto (`id_rsa_55100`, `id_rsa_56300`, etc.).
 
 ### Erro Key is invalid no GitHub
 
-A chave foi copiada com caracteres errados.
-Solucao: Copiar diretamente do terminal via selecao de mouse no PuTTY — nunca transcrever manualmente.
+Chave copiada com caracteres errados.
+Solucao: Selecionar o texto diretamente no terminal PuTTY com o mouse — a selecao ja copia automaticamente.
+
+### Bad owner or permissions on ~/.ssh/config
+
+O SSH rejeita o arquivo de configuracao com permissoes abertas.
+Solucao: `chmod 600 ~/.ssh/config`
+
+### Webhooks chegam mas nenhum arquivo e deployado
+
+Causa mais provavel: permissao `0755` no diretorio de deploy.
+Solucao: `chmod 777 ~/www/projeto55100`
+Verificar tambem: `stat ~/www/projeto55100` e comparar com um projeto que funciona.
 
 ### Deploy nao ocorre apos push
 
-1. Verificar se o push foi para branch main
+1. Verificar se o push foi para branch `main`
 2. Verificar log de webhooks no painel KingHost
 3. Executar Recadastrar Aplicacao no painel KingHost
+4. Se primeira vez: executar clone manual via PuTTY
 
 ---
 
@@ -157,6 +275,7 @@ Solucao: Copiar diretamente do terminal via selecao de mouse no PuTTY — nunca 
 
 - Painel KingHost: painel.kinghost.com.br
 - Repositorio: github.com/git-GMHammes/projeto55100
-- Servidor: web36f42.kinghost.net
+- Servidor SSH: web36f42.kinghost.net
 - Usuario SSH: habilidade
-- Tutorial KingHost: Central de Ajuda -> Publicacao via GIT
+- Caminho real no servidor: `/home/habilidade/www/projeto55100`
+- Chave da conta KingHost no GitHub: `kinghost_key_202605021225`
