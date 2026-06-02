@@ -199,4 +199,14 @@ class App extends BaseConfig
      * @see http://www.w3.org/TR/CSP/
      */
     public bool $CSPEnabled = false;
+
+    public function __construct()
+    {
+        $request_scheme = isset($_SERVER['REQUEST_SCHEME']) ? ($_SERVER['REQUEST_SCHEME']) : 'http';
+        $http_host = isset($_SERVER['HTTP_HOST']) ? ($_SERVER['HTTP_HOST']) : 'localhost:55100';
+        $server_port = isset($_SERVER['SERVER_PORT']) ? ($_SERVER['SERVER_PORT']) : '80';
+
+        $base_path = ($http_host === 'habilidade.com') ? '/projeto55100/src/public/' : '/';
+        $this->baseURL = $request_scheme . '://' . $http_host . ($server_port != '80' ? ':' . $server_port : '') . $base_path;
+    }
 }
