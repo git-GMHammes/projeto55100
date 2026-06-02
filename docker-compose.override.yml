@@ -1,0 +1,14 @@
+services:
+
+  node:
+    build:
+      context: ./node
+      dockerfile: ../docker/node/Dockerfile
+    container_name: codeigniter55100_node
+    restart: unless-stopped
+    environment:
+      WS_PORT: 3000
+    networks:
+      - codeigniter55100_net
+    depends_on:
+      - php

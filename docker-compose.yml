@@ -1,0 +1,81 @@
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: codeigniter55100_mysql
+    restart: unless-stopped
+    ports:
+      - "55101:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root_S3cur3P@ss_2024
+      MYSQL_DATABASE: codeigniter55100_db
+      MYSQL_USER: codeigniter55100_user
+      MYSQL_PASSWORD: codeigniter55100_P@ssw0rd_2024
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - codeigniter55100_net
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot_S3cur3P@ss_2024" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  adminer:
+    image: adminer:latest
+    container_name: codeigniter55100_adminer
+    restart: unless-stopped
+    ports:
+      - "55102:8080"
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql
+    networks:
+      - codeigniter55100_net
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  php:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    container_name: codeigniter55100_php
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./src:/var/www/html
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: codeigniter55100_db
+      DB_USERNAME: codeigniter55100_user
+      DB_PASSWORD: codeigniter55100_P@ssw0rd_2024
+    networks:
+      - codeigniter55100_net
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  nginx:
+    image: nginx:alpine
+    container_name: codeigniter55100_nginx
+    restart: unless-stopped
+    ports:
+      - "55100:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - codeigniter55100_net
+    depends_on:
+      - php
+
+networks:
+  codeigniter55100_net:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local
