@@ -3,7 +3,7 @@
 use CodeIgniter\Boot;
 use Config\Paths;
 
-/* Terceiro teste
+/* Via GitHub
  *---------------------------------------------------------------
  * CHECK PHP VERSION
  *---------------------------------------------------------------
