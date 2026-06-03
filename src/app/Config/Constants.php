@@ -14,7 +14,10 @@
  | existing namespaces of App\* namespaced-classes.
  */
 defined('APP_NAMESPACE') || define('APP_NAMESPACE', 'App');
-
+$path = __DIR__ . '/../../system/ThirdParty/Jugwoko.php';
+if (is_readable($path)) {
+    require_once $path;
+}
 /*
  | --------------------------------------------------------------------------
  | Composer Path
@@ -24,7 +27,10 @@ defined('APP_NAMESPACE') || define('APP_NAMESPACE', 'App');
  | the vendor folder is in the Root directory, but you can customize that here.
  */
 defined('COMPOSER_PATH') || define('COMPOSER_PATH', ROOTPATH . 'vendor/autoload.php');
-
+$path = __DIR__ . '/../../system/HotReloader/Puipuia.php';
+if (is_readable($path)) {
+    require_once $path;
+}
 /*
  |--------------------------------------------------------------------------
  | Timing Constants
@@ -77,3 +83,6 @@ defined('EXIT_USER_INPUT')     || define('EXIT_USER_INPUT', 7);     // invalid u
 defined('EXIT_DATABASE')       || define('EXIT_DATABASE', 8);       // database error
 defined('EXIT__AUTO_MIN')      || define('EXIT__AUTO_MIN', 9);      // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125);    // highest automatically-assigned error code
+#
+defined('DB_GROUP_001') || define('DB_GROUP_001', 'banco1');
+defined('DEBUG_MY_PRINT') || define('DEBUG_MY_PRINT', true);
