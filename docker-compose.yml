@@ -58,6 +58,17 @@ services:
       mysql:
         condition: service_healthy
 
+  node:
+    build:
+      context: ./docker/node
+      dockerfile: Dockerfile
+    container_name: codeigniter55100_node
+    restart: unless-stopped
+    networks:
+      - codeigniter55100_net
+    depends_on:
+      - php
+
   nginx:
     image: nginx:alpine
     container_name: codeigniter55100_nginx

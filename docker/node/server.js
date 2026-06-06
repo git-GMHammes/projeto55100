@@ -8,7 +8,6 @@ const wss    = new WebSocketServer({ server, path: '/ws' });
 
 const PORT = process.env.WS_PORT || 3000;
 
-// Endpoint interno usado pelo PHP para disparar broadcast
 app.use(express.json());
 app.post('/internal/broadcast', (req, res) => {
     const payload = req.body;

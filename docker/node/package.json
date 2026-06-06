@@ -1,7 +1,7 @@
 {
-  "name": "chat56400-ws",
+  "name": "projeto55100-ws",
   "version": "1.0.0",
-  "description": "Servidor WebSocket para chat56400",
+  "description": "Servidor WebSocket para projeto55100",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
