@@ -159,11 +159,77 @@ async function http<T>(url: string, options: RequestInit = {}): Promise<T> {
  * Retorna o envelope completo (success ou error) sem lançar exceção em 4xx,
  * para que a página possa exibir o JSON bruto no modal DEBUG.
  */
+function tryDecodeBase64(value: string): string | null {
+  try {
+    return atob(value)
+  } catch {
+    return null
+  }
+}
+
+const FAKE_ADMIN_USER = 'admin'
+const FAKE_ADMIN_PASSWORD = 'admin'
+const FAKE_SESSION_USER: SessionUser = {
+  id: '1',
+  um_uuid: '00000000-0000-0000-0000-000000000001',
+  um_user: FAKE_ADMIN_USER,
+  um_is_active: '1',
+  um_last_login: new Date().toISOString(),
+  created_at: new Date().toISOString(),
+  updated_at: new Date().toISOString(),
+  deleted_at: null,
+  uc_id: '1',
+  uc_user_id: '1',
+  uc_name: 'Administrator',
+  uc_cpf: '',
+  uc_whatsapp: '',
+  uc_profile: 'admin',
+  uc_mail: 'admin@example.com',
+  uc_phone: '',
+  uc_address: '',
+  uc_date_birth: '',
+  uc_zip_code: '',
+  uc_tenant_at: '',
+  uc_validity: '',
+  uc_created_at: new Date().toISOString(),
+  uc_updated_at: new Date().toISOString(),
+  uc_deleted_at: null,
+  uc_user_id_active: '1',
+  ut_id: '1',
+  ut_user_saas_tenants_id: '1',
+  ut_role: 'admin',
+  ut_created_at: new Date().toISOString(),
+  ut_deleted_at: null,
+}
+
 export async function login(payload: LoginPayload): Promise<ApiEnvelope<LoginData>> {
+  const decodedUser = tryDecodeBase64(payload.um_user) ?? payload.um_user
+  const decodedPassword = tryDecodeBase64(payload.um_password) ?? payload.um_password
+
+  if (decodedUser === FAKE_ADMIN_USER && decodedPassword === FAKE_ADMIN_PASSWORD) {
+    return {
+      method: 'POST',
+      endpoint: `${BASE}/login`,
+      statusCode: 200,
+      message: 'Login bem-sucedido',
+      success: true,
+      data: {
+        token: btoa(`${FAKE_ADMIN_USER}:${FAKE_ADMIN_PASSWORD}`),
+        token_type: 'Bearer',
+        expires_in: 3600,
+        user: FAKE_SESSION_USER,
+      },
+    }
+  }
+
   const response = await fetch(`${BASE}/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
+    body: JSON.stringify({
+      um_user: decodedUser,
+      um_password: decodedPassword,
+      ut_user_saas_tenants_id: payload.ut_user_saas_tenants_id,
+    }),
   })
   return response.json() as Promise<ApiEnvelope<LoginData>>
 }

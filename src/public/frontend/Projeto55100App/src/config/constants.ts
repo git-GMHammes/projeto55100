@@ -14,5 +14,5 @@ export const APP_BASE_HOST = ((ENVIRONMENT as string) === 'production' || (ENVIR
 // export const THEME = 'Dark'
 // export const THEME = 'Light'
 // export const THEME = 'Green'
-export const THEME = 'Blue'
+   export const THEME = 'Blue'
 // export const THEME = 'Red'

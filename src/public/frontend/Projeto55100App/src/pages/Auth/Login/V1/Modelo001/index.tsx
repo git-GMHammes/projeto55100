@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import FormGrid, { FormGridSchema } from '../../../../../components/ui/FormGrid/Input'
 import notDefinedImg from '../../../../../assets/images/not_defined.png'
 import { getActiveTheme } from '../../../../../themes/global'
@@ -47,6 +47,7 @@ const schema: FormGridSchema = {
 // ─── Componente ───────────────────────────────────────────────────────────────
 
 function LoginModelo001() {
+    const navigate = useNavigate()
     const { login: theme } = getActiveTheme()
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
@@ -63,9 +64,9 @@ function LoginModelo001() {
         const data = new FormData(form)
 
         const payload: AuthService.LoginPayload = {
-            um_user: data.get('um_user') as string,
-            um_password: data.get('um_password') as string,
-            ut_user_saas_tenants_id: data.get('ut_user_saas_tenants_id') as string,
+            um_user: btoa(String(data.get('um_user') ?? '')),
+            um_password: btoa(String(data.get('um_password') ?? '')),
+            ut_user_saas_tenants_id: String(data.get('ut_user_saas_tenants_id') ?? '1'),
         }
 
         try {
@@ -80,6 +81,7 @@ function LoginModelo001() {
                     response.data.expires_in,
                     response.data.user,
                 )
+                navigate('/v1/home')
             } else {
                 setError(response.message ?? 'Erro ao realizar login')
             }
