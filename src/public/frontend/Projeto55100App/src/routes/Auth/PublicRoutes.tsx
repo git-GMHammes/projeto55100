@@ -2,7 +2,7 @@
 
 const authPublicRoutes = [
   {
-    path: '/v1/login/',
+    path: '/v1/login',
     element: <LoginV1Modelo001 />,
   },
 ]

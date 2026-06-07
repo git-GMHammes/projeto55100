@@ -189,7 +189,7 @@ class Database extends Config
             'time'     => 'H:i:s',
         ],
     ];
-
+    // defined
     public function __construct()
     {
         parent::__construct();
@@ -202,15 +202,15 @@ class Database extends Config
 
             'username' => defined('D7E6D5C4B3A201F9E8D7C6B5A4F3E2D1')
                 ? D7E6D5C4B3A201F9E8D7C6B5A4F3E2D1
-                : (getenv('DB_USERNAME') ?: 'codeigniter56300_user'),
+                : (getenv('DB_USERNAME') ?: 'codeigniter55100_user'),
 
             'password' => defined('A9F8E7D6C5B4A3F2E1D0C9B8A7F6E5D4')
                 ? A9F8E7D6C5B4A3F2E1D0C9B8A7F6E5D4
-                : (getenv('DB_PASSWORD') ?: 'codeigniter56300_P@ssw0rd_2024'),
+                : (getenv('DB_PASSWORD') ?: 'codeigniter55100_P@ssw0rd_2024'),
 
             'database' => defined('F1E0D9C8B7A6F5E4D3C2B1A0F9E8D7C6')
                 ? F1E0D9C8B7A6F5E4D3C2B1A0F9E8D7C6
-                : (getenv('DB_DATABASE') ?: 'codeigniter56300_api_db'),
+                : (getenv('DB_DATABASE') ?: 'codeigniter55100_db'),
 
             'DBDriver' => defined('A0B1C2D3E4F50718293A4B5C6D7E8F90')
                 ? A0B1C2D3E4F50718293A4B5C6D7E8F90

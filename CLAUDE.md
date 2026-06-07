@@ -197,8 +197,21 @@ Exclusão: `deleteSoft()`, `deleteRestore()`, `deleteHard()`, `clearDeleted()`
 - Consome exclusivamente a API REST do backend.
 - O **deploy** consiste em rodar `npm run build` — o resultado em `dist/` é
   copiado para `src/public/` (servido pelo Nginx como arquivos estáticos).
-- Durante o desenvolvimento, o servidor Vite roda na porta **5173**
-  (HMR exposto na porta **55103** via Docker).
+- Durante o desenvolvimento, o servidor Vite roda na porta **5173** (local, fora do Docker).
+
+### URLs de Acesso
+
+| Ambiente                | URL                      | Descrição                                     |
+| ----------------------- | ------------------------ | --------------------------------------------- |
+| Desenvolvimento (local) | `http://localhost:5173`  | Vite dev server com HMR — roda fora do Docker |
+| Produção / Container    | `http://localhost:55100` | Nginx servindo o build React                  |
+| Adminer (banco)         | `http://localhost:55102` | Interface web do MySQL                        |
+
+> O Vite dev server **nunca roda dentro do container** — sempre local.
+> Para acessar o frontend via container (`55100`) é necessário antes
+> gerar o build (`npm run build`) e copiar `dist/` para `src/public/`.
+
+---
 
 ### Estrutura relevante
 
@@ -222,6 +235,60 @@ src/public/frontend/Projeto55100App/
 ├── package.json
 └── .env / .env.example
 ```
+
+---
+
+### Convenções de Rotas do Frontend
+
+> **Toda rota React Router de um módulo DEVE conter o nome da feature em
+> kebab-case no path, idêntico ao nome usado no backend (`/api/v1/{feature}/`).**
+> Nunca usar nomes em português, paths genéricos ou sem o nome da feature.
+
+#### Estrutura de pasta por feature
+
+```
+routes/
+└── UserCustomer/              ← PascalCase, igual ao nome da feature
+    ├── PrivateRoutes.tsx      ← rotas que exigem autenticação
+    ├── PublicRoutes.tsx       ← rotas públicas (se houver)
+    ├── UserCustomer.types.ts  ← tipos das rotas
+    └── index.ts               ← re-exporta as rotas para AppRoutes
+```
+
+#### Padrão de paths React Router por feature
+
+| Path                         | Página                  | Acesso  |
+| ---------------------------- | ----------------------- | ------- |
+| `/v1/user-customer`          | Listagem / tabela       | Privado |
+| `/v1/user-customer/create`   | Formulário de criação   | Privado |
+| `/v1/user-customer/:id/edit` | Formulário de edição    | Privado |
+| `/v1/user-customer/:id`      | Visualização de detalhe | Privado |
+
+> Substituir `user-customer` pelo nome da feature em kebab-case.
+
+#### Endpoints do backend por feature (`/api/v1/{feature}/`)
+
+Disponíveis em todos os módulos baseados em `BaseResourceTableController`:
+
+| Método   | Endpoint                                  | Descrição                 |
+| -------- | ----------------------------------------- | ------------------------- |
+| `POST`   | `/api/v1/{feature}/find`                  | Filtros exatos            |
+| `POST`   | `/api/v1/{feature}/get-grouped`           | WHERE IN                  |
+| `GET`    | `/api/v1/{feature}/search`                | Busca textual             |
+| `GET`    | `/api/v1/{feature}/get/{id}`              | Registro por ID           |
+| `GET`    | `/api/v1/{feature}/get-all`               | Todos os registros        |
+| `GET`    | `/api/v1/{feature}/get-no-pagination`     | Sem paginação             |
+| `GET`    | `/api/v1/{feature}/get-deleted/{id}`      | Deletado por ID           |
+| `GET`    | `/api/v1/{feature}/get-with-deleted/{id}` | Ativo + deletado por ID   |
+| `GET`    | `/api/v1/{feature}/get-deleted-all`       | Todos os deletados        |
+| `GET`    | `/api/v1/{feature}/get-all-with-deleted`  | Todos + deletados         |
+| `POST`   | `/api/v1/{feature}/create`                | Criar registro            |
+| `PUT`    | `/api/v1/{feature}/update/{id}`           | Atualizar registro        |
+| `DELETE` | `/api/v1/{feature}/delete-soft/{id}`      | Soft delete               |
+| `PATCH`  | `/api/v1/{feature}/delete-restore/{id}`   | Restaurar                 |
+| `DELETE` | `/api/v1/{feature}/delete-hard/{id}`      | Hard delete permanente    |
+| `DELETE` | `/api/v1/{feature}/clear-deleted`         | Limpar todos os deletados |
+| `DELETE` | `/api/v1/{feature}/clear-deleted/{id}`    | Limpar deletado por ID    |
 
 ---
 
@@ -324,15 +391,15 @@ Componentes que DEVEM existir em `components/` como wrappers parametrizáveis
 
 ---
 
-### Comandos Node.js
+### Comandos do Frontend (desenvolvimento local)
 
 ```powershell
 # Dentro de: src/public/frontend/Projeto55100App/
 
 npm install          # instalar dependências
-npm run dev          # servidor de desenvolvimento (porta 5173)
+npm run dev          # http://localhost:5173 — Vite com HMR
 npm run build        # gerar build de produção em dist/
-npm run preview      # pré-visualizar o build localmente
+npm run preview      # http://localhost:4173 — pré-visualizar o build
 npm run lint         # verificar erros de lint
 ```
 
@@ -367,6 +434,29 @@ docker/
 ├── php/Dockerfile       ← PHP-FPM com extensões necessárias
 ├── node/Dockerfile      ← Node.js 20 Alpine (WebSocket)
 └── mysql/init.sql       ← Script de inicialização do banco
+```
+
+### Portas expostas pelo Docker
+
+| Porta host | Serviço                | URL                      |
+| ---------- | ---------------------- | ------------------------ |
+| `55100`    | Nginx (frontend + API) | `http://localhost:55100` |
+| `55101`    | MySQL                  | `localhost:55101`        |
+| `55102`    | Adminer                | `http://localhost:55102` |
+
+### Comandos Docker
+
+```powershell
+# Na raiz do projeto
+
+docker compose up -d            # subir todos os containers em background
+docker compose down             # parar e remover containers
+docker compose ps               # status dos containers
+docker compose logs -f          # logs em tempo real (todos os serviços)
+docker compose logs -f nginx    # logs apenas do Nginx
+docker compose logs -f node     # logs apenas do WebSocket
+docker compose build            # rebuild das imagens (após alterar Dockerfiles)
+docker compose restart nginx    # reiniciar serviço específico
 ```
 
 ---
