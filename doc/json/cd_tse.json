@@ -1,0 +1,557 @@
+{
+    "table": "municipio_ibge_tse",
+    "rows": [
+        {
+            "id": 1,
+            "cd_ibge": "3300100",
+            "cd_tse": "58017",
+            "nm_cidade": "Angra dos Reis"
+        },
+        {
+            "id": 2,
+            "cd_ibge": "3300159",
+            "cd_tse": "58181",
+            "nm_cidade": "Aperibé"
+        },
+        {
+            "id": 3,
+            "cd_ibge": "3300209",
+            "cd_tse": "58033",
+            "nm_cidade": "Araruama"
+        },
+        {
+            "id": 4,
+            "cd_ibge": "3300225",
+            "cd_tse": "58220",
+            "nm_cidade": "Areal"
+        },
+        {
+            "id": 5,
+            "cd_ibge": "3300233",
+            "cd_tse": "58408",
+            "nm_cidade": "Armação dos Búzios"
+        },
+        {
+            "id": 6,
+            "cd_ibge": "3300258",
+            "cd_tse": "59277",
+            "nm_cidade": "Arraial do Cabo"
+        },
+        {
+            "id": 7,
+            "cd_ibge": "3300308",
+            "cd_tse": "58050",
+            "nm_cidade": "Barra do Piraí"
+        },
+        {
+            "id": 8,
+            "cd_ibge": "3300407",
+            "cd_tse": "58076",
+            "nm_cidade": "Barra Mansa"
+        },
+        {
+            "id": 9,
+            "cd_ibge": "3300456",
+            "cd_tse": "58041",
+            "nm_cidade": "Belford Roxo"
+        },
+        {
+            "id": 10,
+            "cd_ibge": "3300506",
+            "cd_tse": "58092",
+            "nm_cidade": "Bom Jardim"
+        },
+        {
+            "id": 11,
+            "cd_ibge": "3300605",
+            "cd_tse": "58114",
+            "nm_cidade": "Bom Jesus do Itabapoana"
+        },
+        {
+            "id": 12,
+            "cd_ibge": "3300704",
+            "cd_tse": "58130",
+            "nm_cidade": "Cabo Frio"
+        },
+        {
+            "id": 13,
+            "cd_ibge": "3300803",
+            "cd_tse": "58157",
+            "nm_cidade": "Cachoeiras de Macacu"
+        },
+        {
+            "id": 14,
+            "cd_ibge": "3300902",
+            "cd_tse": "58173",
+            "nm_cidade": "Cambuci"
+        },
+        {
+            "id": 15,
+            "cd_ibge": "3300936",
+            "cd_tse": "58300",
+            "nm_cidade": "Carapebus"
+        },
+        {
+            "id": 16,
+            "cd_ibge": "3300951",
+            "cd_tse": "58165",
+            "nm_cidade": "Comendador Levy Gasparian"
+        },
+        {
+            "id": 17,
+            "cd_ibge": "3301009",
+            "cd_tse": "58190",
+            "nm_cidade": "Campos dos Goytacazes"
+        },
+        {
+            "id": 18,
+            "cd_ibge": "3301108",
+            "cd_tse": "58211",
+            "nm_cidade": "Cantagalo"
+        },
+        {
+            "id": 19,
+            "cd_ibge": "3301157",
+            "cd_tse": "58068",
+            "nm_cidade": "Cardoso Moreira"
+        },
+        {
+            "id": 20,
+            "cd_ibge": "3301207",
+            "cd_tse": "58238",
+            "nm_cidade": "Carmo"
+        },
+        {
+            "id": 21,
+            "cd_ibge": "3301306",
+            "cd_tse": "58254",
+            "nm_cidade": "Casimiro de Abreu"
+        },
+        {
+            "id": 22,
+            "cd_ibge": "3301405",
+            "cd_tse": "58270",
+            "nm_cidade": "Conceição de Macabu"
+        },
+        {
+            "id": 23,
+            "cd_ibge": "3301504",
+            "cd_tse": "58297",
+            "nm_cidade": "Cordeiro"
+        },
+        {
+            "id": 24,
+            "cd_ibge": "3301603",
+            "cd_tse": "58319",
+            "nm_cidade": "Duas Barras"
+        },
+        {
+            "id": 25,
+            "cd_ibge": "3301702",
+            "cd_tse": "58335",
+            "nm_cidade": "Duque de Caxias"
+        },
+        {
+            "id": 26,
+            "cd_ibge": "3301801",
+            "cd_tse": "58351",
+            "nm_cidade": "Engenheiro Paulo de Frontin"
+        },
+        {
+            "id": 27,
+            "cd_ibge": "3301850",
+            "cd_tse": "58106",
+            "nm_cidade": "Guapimirim"
+        },
+        {
+            "id": 28,
+            "cd_ibge": "3301876",
+            "cd_tse": "58262",
+            "nm_cidade": "Iguaba Grande"
+        },
+        {
+            "id": 29,
+            "cd_ibge": "3301900",
+            "cd_tse": "58378",
+            "nm_cidade": "Itaboraí"
+        },
+        {
+            "id": 30,
+            "cd_ibge": "3302007",
+            "cd_tse": "58394",
+            "nm_cidade": "Itaguaí"
+        },
+        {
+            "id": 31,
+            "cd_ibge": "3302056",
+            "cd_tse": "59293",
+            "nm_cidade": "Italva"
+        },
+        {
+            "id": 32,
+            "cd_ibge": "3302106",
+            "cd_tse": "58416",
+            "nm_cidade": "Itaocara"
+        },
+        {
+            "id": 33,
+            "cd_ibge": "3302205",
+            "cd_tse": "58432",
+            "nm_cidade": "Itaperuna"
+        },
+        {
+            "id": 34,
+            "cd_ibge": "3302254",
+            "cd_tse": "58440",
+            "nm_cidade": "Itatiaia"
+        },
+        {
+            "id": 35,
+            "cd_ibge": "3302270",
+            "cd_tse": "58149",
+            "nm_cidade": "Japeri"
+        },
+        {
+            "id": 36,
+            "cd_ibge": "3302304",
+            "cd_tse": "58459",
+            "nm_cidade": "Laje do Muriaé"
+        },
+        {
+            "id": 37,
+            "cd_ibge": "3302403",
+            "cd_tse": "58475",
+            "nm_cidade": "Macaé"
+        },
+        {
+            "id": 38,
+            "cd_ibge": "3302452",
+            "cd_tse": "58386",
+            "nm_cidade": "Macuco"
+        },
+        {
+            "id": 39,
+            "cd_ibge": "3302502",
+            "cd_tse": "58491",
+            "nm_cidade": "Magé"
+        },
+        {
+            "id": 40,
+            "cd_ibge": "3302601",
+            "cd_tse": "58513",
+            "nm_cidade": "Mangaratiba"
+        },
+        {
+            "id": 41,
+            "cd_ibge": "3302700",
+            "cd_tse": "58530",
+            "nm_cidade": "Maricá"
+        },
+        {
+            "id": 42,
+            "cd_ibge": "3302809",
+            "cd_tse": "58556",
+            "nm_cidade": "Mendes"
+        },
+        {
+            "id": 43,
+            "cd_ibge": "3302858",
+            "cd_tse": "58467",
+            "nm_cidade": "Mesquita"
+        },
+        {
+            "id": 44,
+            "cd_ibge": "3302908",
+            "cd_tse": "58572",
+            "nm_cidade": "Miguel Pereira"
+        },
+        {
+            "id": 45,
+            "cd_ibge": "3303005",
+            "cd_tse": "58599",
+            "nm_cidade": "Miracema"
+        },
+        {
+            "id": 46,
+            "cd_ibge": "3303104",
+            "cd_tse": "58610",
+            "nm_cidade": "Natividade"
+        },
+        {
+            "id": 47,
+            "cd_ibge": "3303203",
+            "cd_tse": "58637",
+            "nm_cidade": "Nilópolis"
+        },
+        {
+            "id": 48,
+            "cd_ibge": "3303302",
+            "cd_tse": "58653",
+            "nm_cidade": "Niterói"
+        },
+        {
+            "id": 49,
+            "cd_ibge": "3303401",
+            "cd_tse": "58670",
+            "nm_cidade": "Nova Friburgo"
+        },
+        {
+            "id": 50,
+            "cd_ibge": "3303500",
+            "cd_tse": "58696",
+            "nm_cidade": "Nova Iguaçu"
+        },
+        {
+            "id": 51,
+            "cd_ibge": "3303609",
+            "cd_tse": "58718",
+            "nm_cidade": "Paracambi"
+        },
+        {
+            "id": 52,
+            "cd_ibge": "3303708",
+            "cd_tse": "58734",
+            "nm_cidade": "Paraíba do Sul"
+        },
+        {
+            "id": 53,
+            "cd_ibge": "3303807",
+            "cd_tse": "58750",
+            "nm_cidade": "Paraty"
+        },
+        {
+            "id": 54,
+            "cd_ibge": "3303856",
+            "cd_tse": "59315",
+            "nm_cidade": "Paty do Alferes"
+        },
+        {
+            "id": 55,
+            "cd_ibge": "3303906",
+            "cd_tse": "58777",
+            "nm_cidade": "Petrópolis"
+        },
+        {
+            "id": 56,
+            "cd_ibge": "3303955",
+            "cd_tse": "58246",
+            "nm_cidade": "Pinheiral"
+        },
+        {
+            "id": 57,
+            "cd_ibge": "3304003",
+            "cd_tse": "58793",
+            "nm_cidade": "Piraí"
+        },
+        {
+            "id": 58,
+            "cd_ibge": "3304102",
+            "cd_tse": "58815",
+            "nm_cidade": "Porciúncula"
+        },
+        {
+            "id": 59,
+            "cd_ibge": "3304110",
+            "cd_tse": "58327",
+            "nm_cidade": "Porto Real"
+        },
+        {
+            "id": 60,
+            "cd_ibge": "3304128",
+            "cd_tse": "58025",
+            "nm_cidade": "Quatis"
+        },
+        {
+            "id": 61,
+            "cd_ibge": "3304144",
+            "cd_tse": "58122",
+            "nm_cidade": "Queimados"
+        },
+        {
+            "id": 62,
+            "cd_ibge": "3304151",
+            "cd_tse": "58009",
+            "nm_cidade": "Quissamã"
+        },
+        {
+            "id": 63,
+            "cd_ibge": "3304201",
+            "cd_tse": "58831",
+            "nm_cidade": "Resende"
+        },
+        {
+            "id": 64,
+            "cd_ibge": "3304300",
+            "cd_tse": "58858",
+            "nm_cidade": "Rio Bonito"
+        },
+        {
+            "id": 65,
+            "cd_ibge": "3304409",
+            "cd_tse": "58874",
+            "nm_cidade": "Rio Claro"
+        },
+        {
+            "id": 66,
+            "cd_ibge": "3304508",
+            "cd_tse": "58890",
+            "nm_cidade": "Rio das Flores"
+        },
+        {
+            "id": 67,
+            "cd_ibge": "3304524",
+            "cd_tse": "58203",
+            "nm_cidade": "Rio das Ostras"
+        },
+        {
+            "id": 68,
+            "cd_ibge": "3304557",
+            "cd_tse": "60011",
+            "nm_cidade": "Rio de Janeiro"
+        },
+        {
+            "id": 69,
+            "cd_ibge": "3304607",
+            "cd_tse": "58912",
+            "nm_cidade": "Santa Maria Madalena"
+        },
+        {
+            "id": 70,
+            "cd_ibge": "3304706",
+            "cd_tse": "58939",
+            "nm_cidade": "Santo Antônio de Pádua"
+        },
+        {
+            "id": 71,
+            "cd_ibge": "3304755",
+            "cd_tse": "58289",
+            "nm_cidade": "São Francisco de Itabapoana"
+        },
+        {
+            "id": 72,
+            "cd_ibge": "3304805",
+            "cd_tse": "58955",
+            "nm_cidade": "São Fidélis"
+        },
+        {
+            "id": 73,
+            "cd_ibge": "3304904",
+            "cd_tse": "58971",
+            "nm_cidade": "São Gonçalo"
+        },
+        {
+            "id": 74,
+            "cd_ibge": "3305000",
+            "cd_tse": "58998",
+            "nm_cidade": "São João da Barra"
+        },
+        {
+            "id": 75,
+            "cd_ibge": "3305109",
+            "cd_tse": "59013",
+            "nm_cidade": "São João de Meriti"
+        },
+        {
+            "id": 76,
+            "cd_ibge": "3305133",
+            "cd_tse": "58343",
+            "nm_cidade": "São José de Ubá"
+        },
+        {
+            "id": 77,
+            "cd_ibge": "3305158",
+            "cd_tse": "59331",
+            "nm_cidade": "São José do Vale do Rio Preto"
+        },
+        {
+            "id": 78,
+            "cd_ibge": "3305208",
+            "cd_tse": "59030",
+            "nm_cidade": "São Pedro da Aldeia"
+        },
+        {
+            "id": 79,
+            "cd_ibge": "3305307",
+            "cd_tse": "59056",
+            "nm_cidade": "São Sebastião do Alto"
+        },
+        {
+            "id": 80,
+            "cd_ibge": "3305406",
+            "cd_tse": "59072",
+            "nm_cidade": "Sapucaia"
+        },
+        {
+            "id": 81,
+            "cd_ibge": "3305505",
+            "cd_tse": "59099",
+            "nm_cidade": "Saquarema"
+        },
+        {
+            "id": 82,
+            "cd_ibge": "3305554",
+            "cd_tse": "58424",
+            "nm_cidade": "Seropédica"
+        },
+        {
+            "id": 83,
+            "cd_ibge": "3305604",
+            "cd_tse": "59110",
+            "nm_cidade": "Silva Jardim"
+        },
+        {
+            "id": 84,
+            "cd_ibge": "3305703",
+            "cd_tse": "59137",
+            "nm_cidade": "Sumidouro"
+        },
+        {
+            "id": 85,
+            "cd_ibge": "3305752",
+            "cd_tse": "58360",
+            "nm_cidade": "Tanguá"
+        },
+        {
+            "id": 86,
+            "cd_ibge": "3305802",
+            "cd_tse": "59153",
+            "nm_cidade": "Teresópolis"
+        },
+        {
+            "id": 87,
+            "cd_ibge": "3305901",
+            "cd_tse": "59170",
+            "nm_cidade": "Trajano de Moraes"
+        },
+        {
+            "id": 88,
+            "cd_ibge": "3306008",
+            "cd_tse": "59196",
+            "nm_cidade": "Três Rios"
+        },
+        {
+            "id": 89,
+            "cd_ibge": "3306107",
+            "cd_tse": "59218",
+            "nm_cidade": "Valença"
+        },
+        {
+            "id": 90,
+            "cd_ibge": "3306156",
+            "cd_tse": "58084",
+            "nm_cidade": "Varre-Sai"
+        },
+        {
+            "id": 91,
+            "cd_ibge": "3306206",
+            "cd_tse": "59234",
+            "nm_cidade": "Vassouras"
+        },
+        {
+            "id": 92,
+            "cd_ibge": "3306305",
+            "cd_tse": "59250",
+            "nm_cidade": "Volta Redonda"
+        }
+    ]
+}
