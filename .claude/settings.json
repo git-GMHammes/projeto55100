@@ -26,7 +26,19 @@
       "Bash(Get-ChildItem \"c:/laragon/www/php/habilidade/projeto55100/src/writable/logs/\")",
       "Bash(Sort-Object LastWriteTime -Descending)",
       "Bash(Select-Object -First 3 -ExpandProperty Name)",
-      "Bash(git -C /c/laragon/www/php/habilidade/projeto55100 log --oneline --all -- \"src/app/Models/V1/BaseViewModel.php\")"
+      "Bash(git -C /c/laragon/www/php/habilidade/projeto55100 log --oneline --all -- \"src/app/Models/V1/BaseViewModel.php\")",
+      "Bash(git -C /c/laragon/www/php/habilidade/projeto55100 log --oneline --all -- \"*.php\")",
+      "Bash(git -C /c/laragon/www/php/habilidade/projeto55100 show --name-only 5b94a25)",
+      "Bash(git -C /c/laragon/www/php/habilidade/projeto55100 show --name-only bd1eb0e)",
+      "Bash(git -C /c/laragon/www/php/habilidade/projeto55100 log --all --full-history --oneline -- \"src/app/Models/V1/BaseViewModel.php\")",
+      "Bash(git -C /c/laragon/www/php/habilidade/projeto55100 log --all --full-history --oneline -- \"src/app/Models/V1/BaseTableModel.php\")",
+      "Bash(git -C /c/laragon/www/php/habilidade/projeto55100 log --all --oneline -- \"src/app/Models/V1/User/UserCustomer/SqlViewModel.php\")",
+      "Bash(ls /c/laragon/etc/nginx/sites-enabled/ 2>/dev/null | head -20; ls /c/laragon/tmp/ 2>/dev/null | head -10)",
+      "Read(//c/laragon/etc/nginx/sites-enabled//**)",
+      "Read(//c/laragon/tmp//**)",
+      "Bash(find /c/laragon/logs -name \"*.log\" 2>/dev/null | head -10)",
+      "Read(//c/laragon/**)",
+      "Bash(podman logs *)"
     ],
     "additionalDirectories": [
       "C:\\Users\\HabilidadeCom"
