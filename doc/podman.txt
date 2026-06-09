@@ -137,7 +137,7 @@ podman rmi -af
 podman volume rm -af
 podman network prune -f
 podman system prune -af --volumes
-
+ 
 clear
 cd C:\laragon\www\php\habilidade\projeto55100
 
