@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(podman machine stop 2>&1; Write-Host \"Exit: $LASTEXITCODE\")",
+      "PowerShell(podman machine start 2>&1; Write-Host \"Exit: $LASTEXITCODE\")",
+      "PowerShell(Set-Location \"C:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\"; docker compose up -d 2>&1; Write-Host \"Exit: $LASTEXITCODE\")",
+      "PowerShell(docker context list 2>&1)",
+      "PowerShell(podman compose version 2>&1)",
+      "PowerShell(Set-Location \"C:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\"; docker --context podman-machine-default compose up -d 2>&1; Write-Host \"Exit: $LASTEXITCODE\")",
+      "PowerShell(curl.exe -s -o $null -w \"HTTP Status: %{http_code}\\\\nIP conectado: %{remote_ip}:%{remote_port}\" http://localhost:55100/ 2>&1; Write-Host \"`nExit: $LASTEXITCODE\")",
+      "PowerShell(podman machine stop 2>&1; Write-Host \"Machine stop exit: $LASTEXITCODE\")",
+      "PowerShell(wsl --shutdown 2>&1; Write-Host \"WSL shutdown exit: $LASTEXITCODE\")",
+      "PowerShell(podman machine start 2>&1; Write-Host \"Machine start exit: $LASTEXITCODE\")",
+      "PowerShell(Set-Location \"C:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\"; docker --context podman-machine-default compose up -d 2>&1; Write-Host \"Compose exit: $LASTEXITCODE\")",
+      "PowerShell(docker --context podman-machine-default ps --format \"table {{.Names}}\\\\t{{.Status}}\\\\t{{.Ports}}\" 2>&1)",
+      "PowerShell(netstat -ano | findstr \":55101\"; Write-Host \"---\"; Get-Process -Id \\(netstat -ano | Select-String \":55101\" | ForEach-Object { \\($_ -split '\\\\s+'\\)[-1] } | Select-Object -First 1\\) -ErrorAction SilentlyContinue 2>&1)",
+      "PowerShell(podman machine ssh \"ss -tlnp | grep -E '55100|55101|55102|rootless'\" 2>&1)",
+      "PowerShell(podman machine ssh \"podman run -d --rm -p 55101:3306 --name test_mysql -e MYSQL_ROOT_PASSWORD=test mysql:8.0 2>&1; sleep 3; ss -tlnp | grep 55101; podman stop test_mysql 2>/dev/null\" 2>&1)",
+      "PowerShell(netsh int ipv4 show excludedportrange protocol=tcp 2>&1)",
+      "PowerShell(\\([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent\\(\\)\\).IsInRole\\([Security.Principal.WindowsBuiltInRole]::Administrator\\))",
+      "PowerShell(podman machine stop 2>&1; wsl --shutdown 2>&1; Write-Host \"Stop/shutdown exit: $LASTEXITCODE\")",
+      "PowerShell(podman machine start 2>&1; Write-Host \"Start exit: $LASTEXITCODE\")",
+      "PowerShell(curl.exe -s -o $null -w \"HTTP Status: %{http_code}\" http://localhost:55100/ 2>&1)",
+      "PowerShell(curl.exe -s -o $null -w \"Adminer: %{http_code}\" http://localhost:55102/ 2>&1)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\HabilidadeCom"
+    ]
+  }
+}
