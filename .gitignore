@@ -4,3 +4,5 @@ doc/zip/2022/*
 doc/zip/2024/*
 CLAUDE.md
 src/_env
+src/writable/*
+.claude/*

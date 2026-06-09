@@ -21,7 +21,12 @@
       "PowerShell(podman machine stop 2>&1; wsl --shutdown 2>&1; Write-Host \"Stop/shutdown exit: $LASTEXITCODE\")",
       "PowerShell(podman machine start 2>&1; Write-Host \"Start exit: $LASTEXITCODE\")",
       "PowerShell(curl.exe -s -o $null -w \"HTTP Status: %{http_code}\" http://localhost:55100/ 2>&1)",
-      "PowerShell(curl.exe -s -o $null -w \"Adminer: %{http_code}\" http://localhost:55102/ 2>&1)"
+      "PowerShell(curl.exe -s -o $null -w \"Adminer: %{http_code}\" http://localhost:55102/ 2>&1)",
+      "Bash(docker compose *)",
+      "Bash(Get-ChildItem \"c:/laragon/www/php/habilidade/projeto55100/src/writable/logs/\")",
+      "Bash(Sort-Object LastWriteTime -Descending)",
+      "Bash(Select-Object -First 3 -ExpandProperty Name)",
+      "Bash(git -C /c/laragon/www/php/habilidade/projeto55100 log --oneline --all -- \"src/app/Models/V1/BaseViewModel.php\")"
     ],
     "additionalDirectories": [
       "C:\\Users\\HabilidadeCom"
