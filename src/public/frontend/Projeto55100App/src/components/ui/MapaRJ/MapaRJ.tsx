@@ -38,13 +38,16 @@ function MapaRJ({
     return () => observer.disconnect()
   }, [])
 
-  const { svgRef, municipioSelecionado, modalAberto, fecharModal, carregando, erro, dados } = useMapaRJ({
+  const { svgRef, municipioSelecionado, modalAberto, fecharModal, carregando, erro, dados, hoveredMapCod } = useMapaRJ({
     dataUrl,
     shapefileBaseUrl,
     width: actualWidth,
     height,
     highlightedCod: effectiveCod,
   })
+
+  const displayCod  = hoveredButtonCod ?? hoveredMapCod ?? pinnedCod
+  const displayNome = displayCod && dados ? (dados[displayCod]?.nome ?? null) : null
 
   const { login: theme } = getActiveTheme()
 
@@ -98,8 +101,30 @@ function MapaRJ({
         {/* Coluna do mapa */}
         <div
           ref={mapContainerRef}
-          style={{ flex: 1, minWidth: 0 }}
+          style={{ flex: 1, minWidth: 0, position: 'relative' }}
         >
+          {displayNome && (
+            <div
+              style={{
+                position: 'absolute',
+                top: '0.75rem',
+                left: '0.75rem',
+                zIndex: 10,
+                background: 'rgba(255,255,255,0.92)',
+                padding: '0.2rem 0.75rem',
+                borderRadius: '0.4rem',
+                fontWeight: 600,
+                fontSize: '2rem',
+                color: theme.headerStart,
+                pointerEvents: 'none',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.13)',
+                border: `1px solid ${theme.headerEnd}55`,
+                letterSpacing: '0.01em',
+              }}
+            >
+              {displayNome}
+            </div>
+          )}
           {carregando && !erro && (
             <div className="d-flex align-items-center justify-content-center gap-2 py-3 text-secondary">
               <div className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />

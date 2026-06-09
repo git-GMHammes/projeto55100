@@ -1,5 +1,6 @@
 CREATE OR REPLACE VIEW view_votacao_candidato_munzona_2024_RJ_group AS
 SELECT
+    CONCAT('2024', `NR_VOTAVEL`, `CD_MUNICIPIO`) AS `ID`,
     CD_MUNICIPIO,
     NM_MUNICIPIO,
     DS_CARGO,

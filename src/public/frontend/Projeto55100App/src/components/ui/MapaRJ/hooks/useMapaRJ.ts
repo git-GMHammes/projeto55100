@@ -30,6 +30,9 @@ export function useMapaRJ({ dataUrl, shapefileBaseUrl, width, height, highlighte
   const [carregando, setCarregando] = useState(true)
   const [erro, setErro] = useState<string | null>(null)
   const [fetchedData, setFetchedData] = useState<FetchedData | null>(null)
+  const [hoveredMapCod, setHoveredMapCod] = useState<string | null>(null)
+  const setHoveredMapCodRef = useRef(setHoveredMapCod)
+  const hoveredMapCodRef    = useRef<string | null>(null)
 
   // Mantém ref sincronizada com a prop para uso nos handlers D3
   useEffect(() => {
@@ -90,8 +93,11 @@ export function useMapaRJ({ dataUrl, shapefileBaseUrl, width, height, highlighte
       .style('stroke-width', '0.5')
       .style('cursor', 'pointer')
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .on('mouseenter', function (this: any) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .on('mouseenter', function (this: any, _event: any, d: any) {
         d3.select(this).style('fill', COR_DESTAQUE)
+        hoveredMapCodRef.current = d.properties.CD_MUN
+        setHoveredMapCodRef.current(d.properties.CD_MUN)
       })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .on('mouseleave', function (this: any, _event: any, d: any) {
@@ -99,11 +105,13 @@ export function useMapaRJ({ dataUrl, shapefileBaseUrl, width, height, highlighte
         if (cod !== highlightedCodRef.current) {
           d3.select(this).style('fill', COR_PADRAO)
         }
+        hoveredMapCodRef.current = null
+        setHoveredMapCodRef.current(null)
       })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .on('click', (_event: any, d: any) => {
         const cod: string = d.properties.CD_MUN
-        if (cod !== highlightedCodRef.current) return
+        if (cod !== highlightedCodRef.current && cod !== hoveredMapCodRef.current) return
         const data: MunicipioData = dados[cod] ?? {
           nome: d.properties.NM_MUN,
           populacao: '',
@@ -140,5 +148,6 @@ export function useMapaRJ({ dataUrl, shapefileBaseUrl, width, height, highlighte
     carregando,
     erro,
     dados: fetchedData?.dados ?? null,
+    hoveredMapCod,
   }
 }
