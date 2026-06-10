@@ -1,26 +1,26 @@
 <?php
 // Rotas REST para manipulação da tabela user_003_customer_files
-// {{www}}/index.php/api/v1/user-customer-files/find
+// POST {{www}}/index.php/api/v1/user-customer-files/find?page=1&limit=20&sort=id&order=ASC
 $routes->post('find', 'Api\V1\User\UserCustomerFiles\ResourceTableController::find');
-// {{www}}/index.php/api/v1/user-customer-files/get-grouped
+// POST {{www}}/index.php/api/v1/user-customer-files/get-grouped?page=1&limit=20&sort=id&order=ASC
 $routes->post('get-grouped', 'Api\V1\User\UserCustomerFiles\ResourceTableController::getGrouped');
-// {{www}}/index.php/api/v1/user-customer-files/search
+// GET  {{www}}/index.php/api/v1/user-customer-files/search?q=termo&page=1&limit=20&sort=id&order=ASC
 $routes->get('search', 'Api\V1\User\UserCustomerFiles\ResourceTableController::search');
-// {{www}}/index.php/api/v1/user-customer-files/get/{id}
+// GET  {{www}}/index.php/api/v1/user-customer-files/get/{id}
 $routes->get('get/(:num)', 'Api\V1\User\UserCustomerFiles\ResourceTableController::get/$1');
-// {{www}}/index.php/api/v1/user-customer-files/get-all
+// GET  {{www}}/index.php/api/v1/user-customer-files/get-all?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-all', 'Api\V1\User\UserCustomerFiles\ResourceTableController::getAll');
-// {{www}}/index.php/api/v1/user-customer-files/get-no-pagination
+// GET  {{www}}/index.php/api/v1/user-customer-files/get-no-pagination?sort=id&order=ASC
 $routes->get('get-no-pagination', 'Api\V1\User\UserCustomerFiles\ResourceTableController::getNoPagination');
-// {{www}}/index.php/api/v1/user-customer-files/get-deleted/{id}
+// GET  {{www}}/index.php/api/v1/user-customer-files/get-deleted/{id}
 $routes->get('get-deleted/(:num)', 'Api\V1\User\UserCustomerFiles\ResourceTableController::getDeleted/$1');
-// {{www}}/index.php/api/v1/user-customer-files/get-all-with-deleted/{id}
+// GET  {{www}}/index.php/api/v1/user-customer-files/get-all-with-deleted/{id}
 $routes->get('get-all-with-deleted/(:num)', 'Api\V1\User\UserCustomerFiles\ResourceTableController::getAllWithDeleted/$1');
-// {{www}}/index.php/api/v1/user-customer-files/get-all-with-deleted
+// GET  {{www}}/index.php/api/v1/user-customer-files/get-all-with-deleted?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-all-with-deleted', 'Api\V1\User\UserCustomerFiles\ResourceTableController::getAllWithDeleted');
-// {{www}}/index.php/api/v1/user-customer-files/get-deleted-all
+// GET  {{www}}/index.php/api/v1/user-customer-files/get-deleted-all?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-deleted-all', 'Api\V1\User\UserCustomerFiles\ResourceTableController::getDeletedAll');
-// {{www}}/index.php/api/v1/user-customer-files/get-with-deleted/{id}
+// GET  {{www}}/index.php/api/v1/user-customer-files/get-with-deleted/{id}
 $routes->get('get-with-deleted/(:num)', 'Api\V1\User\UserCustomerFiles\ResourceTableController::getWithDeleted/$1');
 // {{www}}/index.php/api/v1/user-customer-files/create
 $routes->post('create', 'Api\V1\User\UserCustomerFiles\ResourceTableController::create');

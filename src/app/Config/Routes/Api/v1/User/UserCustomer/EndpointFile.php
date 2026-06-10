@@ -1,22 +1,22 @@
 <?php
 // Rotas REST para manipulação da tabela user_002_customer
-// {{www}}/index.php/api/v1/user-customer-file/find
+// POST {{www}}/index.php/api/v1/user-customer-file/find?page=1&limit=20&sort=id&order=ASC
 $routes->post('find', 'Api\V1\User\UserCustomer\ResourceFileController::find');
-// {{www}}/index.php/api/v1/user-customer-file/get-grouped
+// POST {{www}}/index.php/api/v1/user-customer-file/get-grouped?page=1&limit=20&sort=id&order=ASC
 $routes->post('get-grouped', 'Api\V1\User\UserCustomer\ResourceFileController::getGrouped');
-// {{www}}/index.php/api/v1/user-customer-file/search
+// GET  {{www}}/index.php/api/v1/user-customer-file/search?q=termo&page=1&limit=20&sort=id&order=ASC
 $routes->get('search', 'Api\V1\User\UserCustomer\ResourceFileController::search');
-// {{www}}/index.php/api/v1/user-customer-file/get/{id}
+// GET  {{www}}/index.php/api/v1/user-customer-file/get/{id}
 $routes->get('get/(:num)', 'Api\V1\User\UserCustomer\ResourceFileController::get/$1');
-// {{www}}/index.php/api/v1/user-customer-file/get-all
+// GET  {{www}}/index.php/api/v1/user-customer-file/get-all?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-all', 'Api\V1\User\UserCustomer\ResourceFileController::getAll');
-// {{www}}/index.php/api/v1/user-customer-file/get-no-pagination
+// GET  {{www}}/index.php/api/v1/user-customer-file/get-no-pagination?sort=id&order=ASC
 $routes->get('get-no-pagination', 'Api\V1\User\UserCustomer\ResourceFileController::getNoPagination');
-// {{www}}/index.php/api/v1/user-customer-file/get-deleted/{id}
+// GET  {{www}}/index.php/api/v1/user-customer-file/get-deleted/{id}
 $routes->get('get-deleted/(:num)', 'Api\V1\User\UserCustomer\ResourceFileController::getDeleted/$1');
-// {{www}}/index.php/api/v1/user-customer-file/get-deleted-all
+// GET  {{www}}/index.php/api/v1/user-customer-file/get-deleted-all?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-deleted-all', 'Api\V1\User\UserCustomer\ResourceFileController::getDeletedAll');
-// {{www}}/index.php/api/v1/user-customer-file/get-with-deleted/{id}
+// GET  {{www}}/index.php/api/v1/user-customer-file/get-with-deleted/{id}
 $routes->get('get-with-deleted/(:num)', 'Api\V1\User\UserCustomer\ResourceFileController::getWithDeleted/$1');
 // {{www}}/index.php/api/v1/user-customer-file/create
 $routes->post('create', 'Api\V1\User\UserCustomer\ResourceFileController::create');

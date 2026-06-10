@@ -58,11 +58,13 @@ abstract class BaseResourceViewController extends BaseResourceTableController
     {
         try {
             $body = $this->getJsonBody();
-            $filters = \is_array($body) ? $body : [];
+            $filters = $this->extractRequestFilters($body);
 
             $result = $this->processor->findView($filters, $this->getPaginationParams());
 
             return $this->respondPaginated($result['data'], $result['pagination']);
+        } catch (\InvalidArgumentException $e) {
+            return $this->respondValidationError(['filters' => $e->getMessage()]);
         } catch (\Throwable $e) {
             return $this->respondServerError($e);
         } finally {
@@ -161,14 +163,20 @@ abstract class BaseResourceViewController extends BaseResourceTableController
     }
 
     /**
-     * GET .../get-no-pagination?sort=id&order=desc
+     * GET .../get-no-pagination?sort=id&order=desc&limit=1000
+     *
+     * limit é opcional: se informado (inteiro >= 1), aplica LIMIT no SQL.
+     * Sem limit, retorna todos os registros (comportamento original).
      */
     public function getNoPagination(): ResponseInterface
     {
         try {
-            $sort = trim((string) ($this->request->getGet('sort') ?? 'id'));
+            $sort  = trim((string) ($this->request->getGet('sort') ?? 'id'));
             $order = trim((string) ($this->request->getGet('order') ?? 'desc'));
-            $data = $this->processor->getNoPaginationView($sort, $order);
+            $raw   = $this->request->getGet('limit');
+            $limit = ($raw !== null && (int) $raw >= 1) ? (int) $raw : null;
+
+            $data = $this->processor->getNoPaginationView($sort, $order, $limit);
 
             return $this->respondSuccess($data);
         } catch (\Throwable $e) {

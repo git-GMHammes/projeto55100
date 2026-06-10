@@ -178,18 +178,22 @@ abstract class BaseTableModel extends Model
     // -------------------------------------------------------------------------
 
     /**
-     * Retorna todos os registros ativos ordenados, sem paginação.
+     * Retorna registros ativos ordenados, sem paginação.
+     * Se $limit for informado (>= 1), aplica LIMIT no SQL; caso contrário retorna tudo.
      * Respeita soft delete quando habilitado.
      */
-    public function getOrdered(string $sort, string $order): array
+    public function getOrdered(string $sort, string $order, ?int $limit = null): array
     {
         $builder = $this->db->table($this->table);
         $this->applyActiveScopeToBuilder($builder);
 
-        return $builder
-            ->orderBy($this->safeSort($sort), $this->safeOrder($order))
-            ->get()
-            ->getResultArray();
+        $builder->orderBy($this->safeSort($sort), $this->safeOrder($order));
+
+        if ($limit !== null && $limit >= 1) {
+            $builder->limit($limit);
+        }
+
+        return $builder->get()->getResultArray();
     }
 
     // -------------------------------------------------------------------------

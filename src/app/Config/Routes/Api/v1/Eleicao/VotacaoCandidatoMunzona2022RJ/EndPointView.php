@@ -1,20 +1,20 @@
 <?php
 // Rotas REST para consulta da view view_votacao_candidato_munzona_2022_RJ_group
-// {{www}}/index.php/api/v1/votacao-candidato-munzona-2022-rj-view/find
+// POST {{www}}/index.php/api/v1/votacao-candidato-munzona-2022-rj-view/find?page=1&limit=20&sort=id&order=ASC
 $routes->post('find', 'Api\V1\Eleicao\VotacaoCandidatoMunzona2022RJ\ResourceViewController::find');
-// {{www}}/index.php/api/v1/votacao-candidato-munzona-2022-rj-view/get-grouped
+// POST {{www}}/index.php/api/v1/votacao-candidato-munzona-2022-rj-view/get-grouped?page=1&limit=20&sort=id&order=ASC
 $routes->post('get-grouped', 'Api\V1\Eleicao\VotacaoCandidatoMunzona2022RJ\ResourceViewController::getGrouped');
-// {{www}}/index.php/api/v1/votacao-candidato-munzona-2022-rj-view/search
+// GET  {{www}}/index.php/api/v1/votacao-candidato-munzona-2022-rj-view/search?q=termo&page=1&limit=20&sort=id&order=ASC
 $routes->get('search', 'Api\V1\Eleicao\VotacaoCandidatoMunzona2022RJ\ResourceViewController::search');
-// {{www}}/index.php/api/v1/votacao-candidato-munzona-2022-rj-view/get/{id}
+// GET  {{www}}/index.php/api/v1/votacao-candidato-munzona-2022-rj-view/get/{id}
 $routes->get('get/(:num)', 'Api\V1\Eleicao\VotacaoCandidatoMunzona2022RJ\ResourceViewController::get/$1');
-// {{www}}/index.php/api/v1/votacao-candidato-munzona-2022-rj-view/get-all
+// GET  {{www}}/index.php/api/v1/votacao-candidato-munzona-2022-rj-view/get-all?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-all', 'Api\V1\Eleicao\VotacaoCandidatoMunzona2022RJ\ResourceViewController::getAll');
-// {{www}}/index.php/api/v1/votacao-candidato-munzona-2022-rj-view/get-no-pagination
+// GET  {{www}}/index.php/api/v1/votacao-candidato-munzona-2022-rj-view/get-no-pagination?sort=id&order=ASC
 $routes->get('get-no-pagination', 'Api\V1\Eleicao\VotacaoCandidatoMunzona2022RJ\ResourceViewController::getNoPagination');
-// {{www}}/index.php/api/v1/votacao-candidato-munzona-2022-rj-view/get-deleted/{id}
+// GET  {{www}}/index.php/api/v1/votacao-candidato-munzona-2022-rj-view/get-deleted/{id}
 $routes->get('get-deleted/(:num)', 'Api\V1\Eleicao\VotacaoCandidatoMunzona2022RJ\ResourceViewController::getDeleted/$1');
-// {{www}}/index.php/api/v1/votacao-candidato-munzona-2022-rj-view/get-all-with-deleted
+// GET  {{www}}/index.php/api/v1/votacao-candidato-munzona-2022-rj-view/get-all-with-deleted?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-all-with-deleted', 'Api\V1\Eleicao\VotacaoCandidatoMunzona2022RJ\ResourceViewController::getAllWithDeleted');
-// {{www}}/index.php/api/v1/votacao-candidato-munzona-2022-rj-view/get-deleted-all
+// GET  {{www}}/index.php/api/v1/votacao-candidato-munzona-2022-rj-view/get-deleted-all?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-deleted-all', 'Api\V1\Eleicao\VotacaoCandidatoMunzona2022RJ\ResourceViewController::getDeletedAll');

@@ -106,11 +106,12 @@ abstract class BaseTableService extends BaseViewService
     }
 
     /**
-     * GET /get-no-pagination — Lista todos os registros ativos sem paginação (tabela).
+     * GET /get-no-pagination — Lista registros ativos sem paginação (tabela).
+     * Se $limit for informado (>= 1), aplica LIMIT no SQL; caso contrário retorna tudo.
      */
-    public function getNoPagination(string $sort, string $order): array
+    public function getNoPagination(string $sort, string $order, ?int $limit = null): array
     {
-        return $this->tableModel->getOrdered($sort, $order);
+        return $this->tableModel->getOrdered($sort, $order, $limit);
     }
 
     /**

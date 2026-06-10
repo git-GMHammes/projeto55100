@@ -1,26 +1,26 @@
 <?php
 // Rotas REST para manipulação da tabela user_006_password_resets
-// {{www}}/index.php/api/v1/user-password-resets/find
+// POST {{www}}/index.php/api/v1/user-password-resets/find?page=1&limit=20&sort=id&order=ASC
 $routes->post('find', 'Api\V1\User\UserPasswordResets\ResourceTableController::find');
-// {{www}}/index.php/api/v1/user-password-resets/get-grouped
+// POST {{www}}/index.php/api/v1/user-password-resets/get-grouped?page=1&limit=20&sort=id&order=ASC
 $routes->post('get-grouped', 'Api\V1\User\UserPasswordResets\ResourceTableController::getGrouped');
-// {{www}}/index.php/api/v1/user-password-resets/search
+// GET  {{www}}/index.php/api/v1/user-password-resets/search?q=termo&page=1&limit=20&sort=id&order=ASC
 $routes->get('search', 'Api\V1\User\UserPasswordResets\ResourceTableController::search');
-// {{www}}/index.php/api/v1/user-password-resets/get/{id}
+// GET  {{www}}/index.php/api/v1/user-password-resets/get/{id}
 $routes->get('get/(:num)', 'Api\V1\User\UserPasswordResets\ResourceTableController::get/$1');
-// {{www}}/index.php/api/v1/user-password-resets/get-all
+// GET  {{www}}/index.php/api/v1/user-password-resets/get-all?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-all', 'Api\V1\User\UserPasswordResets\ResourceTableController::getAll');
-// {{www}}/index.php/api/v1/user-password-resets/get-no-pagination
+// GET  {{www}}/index.php/api/v1/user-password-resets/get-no-pagination?sort=id&order=ASC
 $routes->get('get-no-pagination', 'Api\V1\User\UserPasswordResets\ResourceTableController::getNoPagination');
-// {{www}}/index.php/api/v1/user-password-resets/get-deleted/{id}
+// GET  {{www}}/index.php/api/v1/user-password-resets/get-deleted/{id}
 $routes->get('get-deleted/(:num)', 'Api\V1\User\UserPasswordResets\ResourceTableController::getDeleted/$1');
-// {{www}}/index.php/api/v1/user-password-resets/get-all-with-deleted/{id}
+// GET  {{www}}/index.php/api/v1/user-password-resets/get-all-with-deleted/{id}
 $routes->get('get-all-with-deleted/(:num)', 'Api\V1\User\UserPasswordResets\ResourceTableController::getAllWithDeleted/$1');
-// {{www}}/index.php/api/v1/user-password-resets/get-all-with-deleted
+// GET  {{www}}/index.php/api/v1/user-password-resets/get-all-with-deleted?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-all-with-deleted', 'Api\V1\User\UserPasswordResets\ResourceTableController::getAllWithDeleted');
-// {{www}}/index.php/api/v1/user-password-resets/get-deleted-all
+// GET  {{www}}/index.php/api/v1/user-password-resets/get-deleted-all?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-deleted-all', 'Api\V1\User\UserPasswordResets\ResourceTableController::getDeletedAll');
-// {{www}}/index.php/api/v1/user-password-resets/get-with-deleted/{id}
+// GET  {{www}}/index.php/api/v1/user-password-resets/get-with-deleted/{id}
 $routes->get('get-with-deleted/(:num)', 'Api\V1\User\UserPasswordResets\ResourceTableController::getWithDeleted/$1');
 // {{www}}/index.php/api/v1/user-password-resets/create
 $routes->post('create', 'Api\V1\User\UserPasswordResets\ResourceTableController::create');

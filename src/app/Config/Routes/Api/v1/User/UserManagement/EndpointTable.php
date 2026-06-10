@@ -1,26 +1,26 @@
 <?php
 // Rotas REST para manipulação da tabela user_001_management
-// {{www}}/index.php/api/v1/user-management/find
+// POST {{www}}/index.php/api/v1/user-management/find?page=1&limit=20&sort=id&order=ASC
 $routes->post('find', 'Api\V1\User\UserManagement\ResourceTableController::find');
-// {{www}}/index.php/api/v1/user-management/get-grouped
+// POST {{www}}/index.php/api/v1/user-management/get-grouped?page=1&limit=20&sort=id&order=ASC
 $routes->post('get-grouped', 'Api\V1\User\UserManagement\ResourceTableController::getGrouped');
-// {{www}}/index.php/api/v1/user-management/search
+// GET  {{www}}/index.php/api/v1/user-management/search?q=termo&page=1&limit=20&sort=id&order=ASC
 $routes->get('search', 'Api\V1\User\UserManagement\ResourceTableController::search');
-// {{www}}/index.php/api/v1/user-management/get/{id}
+// GET  {{www}}/index.php/api/v1/user-management/get/{id}
 $routes->get('get/(:num)', 'Api\V1\User\UserManagement\ResourceTableController::get/$1');
-// {{www}}/index.php/api/v1/user-management/get-all
+// GET  {{www}}/index.php/api/v1/user-management/get-all?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-all', 'Api\V1\User\UserManagement\ResourceTableController::getAll');
-// {{www}}/index.php/api/v1/user-management/get-no-pagination
+// GET  {{www}}/index.php/api/v1/user-management/get-no-pagination?sort=id&order=ASC
 $routes->get('get-no-pagination', 'Api\V1\User\UserManagement\ResourceTableController::getNoPagination');
-// {{www}}/index.php/api/v1/user-management/get-deleted/{id}
+// GET  {{www}}/index.php/api/v1/user-management/get-deleted/{id}
 $routes->get('get-deleted/(:num)', 'Api\V1\User\UserManagement\ResourceTableController::getDeleted/$1');
-// {{www}}/index.php/api/v1/user-management/get-all-with-deleted/{id}
+// GET  {{www}}/index.php/api/v1/user-management/get-all-with-deleted/{id}
 $routes->get('get-all-with-deleted/(:num)', 'Api\V1\User\UserManagement\ResourceTableController::getAllWithDeleted/$1');
-// {{www}}/index.php/api/v1/user-management/get-all-with-deleted
+// GET  {{www}}/index.php/api/v1/user-management/get-all-with-deleted?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-all-with-deleted', 'Api\V1\User\UserManagement\ResourceTableController::getAllWithDeleted');
-// {{www}}/index.php/api/v1/user-management/get-deleted-all
+// GET  {{www}}/index.php/api/v1/user-management/get-deleted-all?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-deleted-all', 'Api\V1\User\UserManagement\ResourceTableController::getDeletedAll');
-// {{www}}/index.php/api/v1/user-management/get-with-deleted/{id}
+// GET  {{www}}/index.php/api/v1/user-management/get-with-deleted/{id}
 $routes->get('get-with-deleted/(:num)', 'Api\V1\User\UserManagement\ResourceTableController::getWithDeleted/$1');
 // {{www}}/index.php/api/v1/user-management/create
 $routes->post('create', 'Api\V1\User\UserManagement\ResourceTableController::create');

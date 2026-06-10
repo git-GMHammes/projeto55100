@@ -1,20 +1,20 @@
 <?php
 // Rotas REST para consulta da view view_user_customer_files
-// {{www}}/index.php/api/v1/user-customer-files-view/find
+// POST {{www}}/index.php/api/v1/user-customer-files-view/find?page=1&limit=20&sort=id&order=ASC
 $routes->post('find', 'Api\V1\User\UserCustomerFiles\ResourceViewController::find');
-// {{www}}/index.php/api/v1/user-customer-files-view/get-grouped
+// POST {{www}}/index.php/api/v1/user-customer-files-view/get-grouped?page=1&limit=20&sort=id&order=ASC
 $routes->post('get-grouped', 'Api\V1\User\UserCustomerFiles\ResourceViewController::getGrouped');
-// {{www}}/index.php/api/v1/user-customer-files-view/search
+// GET  {{www}}/index.php/api/v1/user-customer-files-view/search?q=termo&page=1&limit=20&sort=id&order=ASC
 $routes->get('search', 'Api\V1\User\UserCustomerFiles\ResourceViewController::search');
-// {{www}}/index.php/api/v1/user-customer-files-view/get/{id}
+// GET  {{www}}/index.php/api/v1/user-customer-files-view/get/{id}
 $routes->get('get/(:num)', 'Api\V1\User\UserCustomerFiles\ResourceViewController::get/$1');
-// {{www}}/index.php/api/v1/user-customer-files-view/get-all
+// GET  {{www}}/index.php/api/v1/user-customer-files-view/get-all?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-all', 'Api\V1\User\UserCustomerFiles\ResourceViewController::getAll');
-// {{www}}/index.php/api/v1/user-customer-files-view/get-no-pagination
+// GET  {{www}}/index.php/api/v1/user-customer-files-view/get-no-pagination?sort=id&order=ASC
 $routes->get('get-no-pagination', 'Api\V1\User\UserCustomerFiles\ResourceViewController::getNoPagination');
-// {{www}}/index.php/api/v1/user-customer-files-view/get-deleted/{id}
+// GET  {{www}}/index.php/api/v1/user-customer-files-view/get-deleted/{id}
 $routes->get('get-deleted/(:num)', 'Api\V1\User\UserCustomerFiles\ResourceViewController::getDeleted/$1');
-// {{www}}/index.php/api/v1/user-customer-files-view/get-all-with-deleted
+// GET  {{www}}/index.php/api/v1/user-customer-files-view/get-all-with-deleted?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-all-with-deleted', 'Api\V1\User\UserCustomerFiles\ResourceViewController::getAllWithDeleted');
-// {{www}}/index.php/api/v1/user-customer-files-view/get-deleted-all
+// GET  {{www}}/index.php/api/v1/user-customer-files-view/get-deleted-all?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-deleted-all', 'Api\V1\User\UserCustomerFiles\ResourceViewController::getDeletedAll');

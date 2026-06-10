@@ -180,13 +180,18 @@ abstract class BaseViewModel extends Model
     // -------------------------------------------------------------------------
 
     /**
-     * Retorna todos os registros ordenados, sem paginação.
+     * Retorna registros ordenados, sem paginação.
+     * Se $limit for informado (>= 1), aplica LIMIT no SQL; caso contrário retorna tudo.
      */
-    public function findAllView(string $sort, string $order): array
+    public function findAllView(string $sort, string $order, ?int $limit = null): array
     {
-        return $this->db->table($this->table)
-            ->orderBy($this->safeSort($sort), $this->safeOrder($order))
-            ->get()
-            ->getResultArray();
+        $builder = $this->db->table($this->table)
+            ->orderBy($this->safeSort($sort), $this->safeOrder($order));
+
+        if ($limit !== null && $limit >= 1) {
+            $builder->limit($limit);
+        }
+
+        return $builder->get()->getResultArray();
     }
 }

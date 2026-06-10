@@ -233,11 +233,12 @@ abstract class BaseViewService
     }
 
     /**
-     * GET /get-no-pagination — Lista todos os registros ativos sem paginação (view).
+     * GET /get-no-pagination — Lista registros ativos sem paginação (view).
+     * Se $limit for informado (>= 1), aplica LIMIT no SQL; caso contrário retorna tudo.
      */
-    public function getNoPaginationView(string $sort, string $order): array
+    public function getNoPaginationView(string $sort, string $order, ?int $limit = null): array
     {
-        return $this->viewModel->findAllView($sort, $order);
+        return $this->viewModel->findAllView($sort, $order, $limit);
     }
 
     /**

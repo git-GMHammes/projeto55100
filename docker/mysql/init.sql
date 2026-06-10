@@ -1,3 +1,6 @@
+SET SESSION sql_mode = '';
+SET GLOBAL local_infile = 1;
+
 CREATE TABLE IF NOT EXISTS messages (
     id        INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     username  VARCHAR(50)   NOT NULL,
@@ -5,3 +8,91 @@ CREATE TABLE IF NOT EXISTS messages (
     created_at DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     INDEX idx_created_at (created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS votacao_candidato_munzona_2022_RJ (
+    id                          BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    DT_GERACAO                  VARCHAR(20)  NULL,
+    HH_GERACAO                  VARCHAR(10)  NULL,
+    ANO_ELEICAO                 VARCHAR(4)   NULL,
+    CD_TIPO_ELEICAO             VARCHAR(5)   NULL,
+    NM_TIPO_ELEICAO             VARCHAR(50)  NULL,
+    NR_TURNO                    VARCHAR(2)   NULL,
+    CD_ELEICAO                  VARCHAR(10)  NULL,
+    DS_ELEICAO                  VARCHAR(100) NULL,
+    DT_ELEICAO                  VARCHAR(20)  NULL,
+    TP_ABRANGENCIA              VARCHAR(5)   NULL,
+    SG_UF                       VARCHAR(5)   NULL,
+    SG_UE                       VARCHAR(5)   NULL,
+    NM_UE                       VARCHAR(100) NULL,
+    CD_MUNICIPIO                VARCHAR(10)  NULL,
+    NM_MUNICIPIO                VARCHAR(100) NULL,
+    NR_ZONA                     VARCHAR(10)  NULL,
+    CD_CARGO                    VARCHAR(5)   NULL,
+    DS_CARGO                    VARCHAR(50)  NULL,
+    SQ_CANDIDATO                VARCHAR(20)  NULL,
+    NR_CANDIDATO                VARCHAR(10)  NULL,
+    NM_CANDIDATO                VARCHAR(150) NULL,
+    NM_URNA_CANDIDATO           VARCHAR(100) NULL,
+    NM_SOCIAL_CANDIDATO         VARCHAR(150) NULL,
+    CD_SITUACAO_CANDIDATURA     VARCHAR(5)   NULL,
+    DS_SITUACAO_CANDIDATURA     VARCHAR(50)  NULL,
+    CD_DETALHE_SITUACAO_CAND    VARCHAR(5)   NULL,
+    DS_DETALHE_SITUACAO_CAND    VARCHAR(100) NULL,
+    CD_SITUACAO_JULGAMENTO      VARCHAR(5)   NULL,
+    DS_SITUACAO_JULGAMENTO      VARCHAR(100) NULL,
+    CD_SITUACAO_CASSACAO        VARCHAR(5)   NULL,
+    DS_SITUACAO_CASSACAO        VARCHAR(100) NULL,
+    CD_SITUACAO_DCONST_DIPLOMA  VARCHAR(5)   NULL,
+    DS_SITUACAO_DCONST_DIPLOMA  VARCHAR(100) NULL,
+    TP_AGREMIACAO               VARCHAR(30)  NULL,
+    NR_PARTIDO                  VARCHAR(5)   NULL,
+    SG_PARTIDO                  VARCHAR(20)  NULL,
+    NM_PARTIDO                  VARCHAR(100) NULL,
+    NR_FEDERACAO                VARCHAR(5)   NULL,
+    NM_FEDERACAO                VARCHAR(100) NULL,
+    SG_FEDERACAO                VARCHAR(20)  NULL,
+    DS_COMPOSICAO_FEDERACAO     VARCHAR(255) NULL,
+    SQ_COLIGACAO                VARCHAR(20)  NULL,
+    NM_COLIGACAO                VARCHAR(150) NULL,
+    DS_COMPOSICAO_COLIGACAO     VARCHAR(255) NULL,
+    ST_VOTO_EM_TRANSITO         VARCHAR(2)   NULL,
+    QT_VOTOS_NOMINAIS           VARCHAR(20)  NULL,
+    NM_TIPO_DESTINACAO_VOTOS    VARCHAR(50)  NULL,
+    QT_VOTOS_NOMINAIS_VALIDOS   VARCHAR(20)  NULL,
+    CD_SIT_TOT_TURNO            VARCHAR(5)   NULL,
+    DS_SIT_TOT_TURNO            VARCHAR(50)  NULL,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci
+  COMMENT='Votação por candidato/município/zona com resultado — Eleições 2022 RJ';
+  
+CREATE TABLE votacao_secao_2024_RJ (
+    id                           INT            NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    DT_GERACAO                   VARCHAR(10)    NULL,
+    HH_GERACAO                   VARCHAR(8)     NULL,
+    ANO_ELEICAO                  VARCHAR(4)     NULL,
+    CD_TIPO_ELEICAO              VARCHAR(5)     NULL,
+    NM_TIPO_ELEICAO              VARCHAR(50)    NULL,
+    NR_TURNO                     VARCHAR(1)     NULL,
+    CD_ELEICAO                   VARCHAR(10)    NULL,
+    DS_ELEICAO                   VARCHAR(100)   NULL,
+    DT_ELEICAO                   VARCHAR(10)    NULL,
+    TP_ABRANGENCIA               VARCHAR(1)     NULL,
+    SG_UF                        VARCHAR(2)     NULL,
+    SG_UE                        VARCHAR(10)    NULL,
+    NM_UE                        VARCHAR(100)   NULL,
+    CD_MUNICIPIO                 VARCHAR(10)    NULL,
+    NM_MUNICIPIO                 VARCHAR(100)   NULL,
+    NR_ZONA                      VARCHAR(5)     NULL,
+    NR_SECAO                     VARCHAR(5)     NULL,
+    CD_CARGO                     VARCHAR(5)     NULL,
+    DS_CARGO                     VARCHAR(50)    NULL,
+    NR_VOTAVEL                   VARCHAR(10)    NULL,
+    NM_VOTAVEL                   VARCHAR(150)   NULL,
+    QT_VOTOS                     VARCHAR(10)    NULL,
+    NR_LOCAL_VOTACAO             VARCHAR(10)    NULL,
+    SQ_CANDIDATO                 VARCHAR(20)    NULL,
+    NM_LOCAL_VOTACAO             VARCHAR(150)   NULL,
+    DS_LOCAL_VOTACAO_ENDERECO    VARCHAR(250)   NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

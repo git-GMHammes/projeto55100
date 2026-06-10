@@ -34,21 +34,21 @@ $routes->post('reset-password',  'Api\V1\User\AuthUser\ResourceViewController::r
 // Rotas REST para consulta da view view_auth_user
 // -------------------------------------------------------------------------
 
-// POST {{www}}/index.php/api/v1/auth/find
+// POST {{www}}/index.php/api/v1/auth/find?page=1&limit=20&sort=id&order=ASC
 $routes->post('find',              'Api\V1\User\AuthUser\ResourceViewController::find');
-// POST {{www}}/index.php/api/v1/auth/get-grouped
+// POST {{www}}/index.php/api/v1/auth/get-grouped?page=1&limit=20&sort=id&order=ASC
 $routes->post('get-grouped',       'Api\V1\User\AuthUser\ResourceViewController::getGrouped');
-// GET {{www}}/index.php/api/v1/auth/search
+// GET  {{www}}/index.php/api/v1/auth/search?q=termo&page=1&limit=20&sort=id&order=ASC
 $routes->get('search',             'Api\V1\User\AuthUser\ResourceViewController::search');
-// GET {{www}}/index.php/api/v1/auth/get/{id}
+// GET  {{www}}/index.php/api/v1/auth/get/{id}
 $routes->get('get/(:num)',         'Api\V1\User\AuthUser\ResourceViewController::get/$1');
-// GET {{www}}/index.php/api/v1/auth/get-all
+// GET  {{www}}/index.php/api/v1/auth/get-all?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-all',            'Api\V1\User\AuthUser\ResourceViewController::getAll');
-// GET {{www}}/index.php/api/v1/auth/get-no-pagination
+// GET  {{www}}/index.php/api/v1/auth/get-no-pagination?sort=id&order=ASC
 $routes->get('get-no-pagination',  'Api\V1\User\AuthUser\ResourceViewController::getNoPagination');
-// GET {{www}}/index.php/api/v1/auth/get-deleted/{id}
+// GET  {{www}}/index.php/api/v1/auth/get-deleted/{id}
 $routes->get('get-deleted/(:num)', 'Api\V1\User\AuthUser\ResourceViewController::getDeleted/$1');
-// GET {{www}}/index.php/api/v1/auth/get-all-with-deleted
+// GET  {{www}}/index.php/api/v1/auth/get-all-with-deleted?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-all-with-deleted',   'Api\V1\User\AuthUser\ResourceViewController::getAllWithDeleted');
-// GET {{www}}/index.php/api/v1/auth/get-deleted-all
+// GET  {{www}}/index.php/api/v1/auth/get-deleted-all?page=1&limit=20&sort=id&order=ASC
 $routes->get('get-deleted-all',    'Api\V1\User\AuthUser\ResourceViewController::getDeletedAll');
