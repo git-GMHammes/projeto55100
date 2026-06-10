@@ -6,3 +6,4 @@ CLAUDE.md
 src/_env
 src/writable/*
 .claude/*
+doc/sql/dunp/202606101032_dump.sql
