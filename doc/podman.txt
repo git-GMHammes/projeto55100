@@ -15,7 +15,7 @@ net stop W3SVC /y; net stop WAS /y; net stop HTTP /y
 
 clear
 cd C:\laragon\www\php\habilidade\projeto55100
-podman compose restart
+podman-compose restart
  
 # =============================================
 # Cmando para o PODMAN
@@ -26,10 +26,9 @@ clear
 cd C:\laragon\www\php\habilidade\projeto55100
 podman machine stop
 podman machine start
-# Instale/use o podman-compose em vez do docker-compose
 
 cd C:\laragon\www\php\habilidade\projeto55100
-podman compose up -d --build
+podman-compose up -d --build
  
 # =============================================
 # SCRIPT 1: INICIAR PROJETO (USO DIÁRIO)
@@ -40,8 +39,7 @@ clear
 cd C:\laragon\www\php\habilidade\projeto55100
  
 podman logout --all
-# Instale/use o podman-compose em vez do docker-compose
-podman compose up -d --build
+podman-compose up -d --build
 
 # =============================================
 # SCRIPT 1B: CORRIGIR PATH CORROMPIDA + REINICIAR
@@ -53,14 +51,14 @@ clear
 cd C:\laragon\www\php\habilidade\projeto55100
 
 # 1. Parar tudo
-podman compose down
+podman-compose down
 
 # 2. Limpar a PATH corrompida
 $paths = $env:PATH -split ';' | Select-Object -Unique | Where-Object {$_ -ne ""}
 $env:PATH = $paths -join ';'
 
 # 3. Subir os containers
-podman compose up -d --build
+podman-compose up -d --build
  
 # =============================================
 # SCRIPT 2: PRIMEIRA VEZ / MÁQUINA NOVA
@@ -81,8 +79,7 @@ podman pull docker.io/library/php:8.2-fpm
 podman pull docker.io/library/composer:latest
 
 # Agora pode subir sem erro
-# Instale/use o podman-compose em vez do docker-compose
-podman compose up -d --build
+podman-compose up -d --build
  
 
 # =============================================
@@ -115,10 +112,9 @@ podman pull docker.io/library/php:8.2-fpm
 podman pull docker.io/library/composer:latest
  
 # Subir tudo do zero
-# Instale/use o podman-compose em vez do docker-compose
 clear
 cd C:\laragon\www\php\habilidade\projeto55100
-podman compose up -d --build
+podman-compose up -d --build
 
 # =============================================
 # SCRIPT 3B: LIMPEZA COMPLETA + LIMPAR PATH CORROMPIDA
@@ -157,7 +153,7 @@ podman pull docker.io/library/composer:latest
 # Subir tudo do zero
 clear
 cd C:\laragon\www\php\habilidade\projeto55100
-podman compose up -d --build
+podman-compose up -d --build
  
 # =============================================
 # SCRIPT 4: PARAR CONTAINERS
@@ -166,7 +162,7 @@ podman compose up -d --build
 clear
 cd C:\laragon\www\php\habilidade\projeto55100
 
-podman compose down
+podman-compose down
 
 # =============================================
 # SCRIPT 5: VER STATUS DOS CONTAINERS
@@ -179,7 +175,7 @@ podman ps
 # =============================================
 
 # Ver logs de todos os containers
-podman compose logs
+podman-compose logs
 
 # Ver logs de um container específico
 podman logs cake56100_mysql
@@ -220,8 +216,8 @@ podman load -i composer-latest.tar
  
 clear
 cd C:\laragon\www\php\habilidade\projeto55100
-podman compose up -d --build
- 
+podman-compose up -d --build
+
 # =============================================
 # Se salvou tudo em um arquivo só
 # =============================================
