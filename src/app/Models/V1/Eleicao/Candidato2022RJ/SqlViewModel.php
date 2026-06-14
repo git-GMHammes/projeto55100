@@ -1,32 +1,31 @@
 <?php
 
-namespace App\Models\V1\Eleicao\VotacaoCandidatoMunzona2022RJ;
+namespace App\Models\V1\Eleicao\Candidato2022RJ;
 
 use App\Models\V1\BaseViewModel;
 
 /**
- * Model de leitura para a view view_votacao_candidato_munzona_2022_RJ_group.
+ * Model de leitura para a view view_candidato_2022_RJ.
  *
  * Campos disponíveis na view:
- *   ID, DS_CARGO, NR_CANDIDATO, NM_CANDIDATO, NM_SOCIAL_CANDIDATO,
- *   QT_VOTOS_NOMINAIS, DS_SIT_TOT_TURNO
+ *   ID, CD_MUNICIPIO, NM_MUNICIPIO, NR_CANDIDATO, NM_CANDIDATO,
+ *   SG_PARTIDO, NM_PARTIDO, QT_VOTOS_NOMINAIS_VALIDOS
  *
  * Todos os métodos de leitura estão disponíveis via BaseViewModel.
  */
 class SqlViewModel extends BaseViewModel
 {
     protected $DBGroup = DB_GROUP_001;
-    protected $table = 'view_votacao_candidato_munzona_2022_RJ_group';
+    protected $table = 'view_candidato_2022_RJ';
     protected $primaryKey = 'ID';
 
     /** Campos de texto que usam LIKE %valor% no findPaginatedView. */
     protected array $likeFields = [
         'NM_MUNICIPIO',
-        'DS_CARGO',
         'NR_CANDIDATO',
         'NM_CANDIDATO',
-        'NM_SOCIAL_CANDIDATO',
-        'DS_SIT_TOT_TURNO',
+        'SG_PARTIDO',
+        'NM_PARTIDO',
     ];
 
     /** Campos válidos para ordenação */
@@ -34,21 +33,19 @@ class SqlViewModel extends BaseViewModel
         'ID',
         'CD_MUNICIPIO',
         'NM_MUNICIPIO',
-        'DS_CARGO',
         'NR_CANDIDATO',
         'NM_CANDIDATO',
-        'NM_SOCIAL_CANDIDATO',
-        'QT_VOTOS_NOMINAIS',
-        'DS_SIT_TOT_TURNO',
+        'SG_PARTIDO',
+        'NM_PARTIDO',
+        'QT_VOTOS_NOMINAIS_VALIDOS',
     ];
 
     /** Campos utilizados na busca textual (GET /search) */
     public array $searchFields = [
         'NM_MUNICIPIO',
-        'DS_CARGO',
         'NR_CANDIDATO',
         'NM_CANDIDATO',
-        'NM_SOCIAL_CANDIDATO',
-        'DS_SIT_TOT_TURNO',
+        'SG_PARTIDO',
+        'NM_PARTIDO',
     ];
 }

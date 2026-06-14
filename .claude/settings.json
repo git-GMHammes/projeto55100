@@ -44,7 +44,9 @@
       "PowerShell($sql = \"CREATE OR REPLACE VIEW ``view_votacao_candidato_munzona_2022_RJ_group`` AS SELECT CONCAT\\('2022', ``NR_CANDIDATO``, ``CD_MUNICIPIO``\\) AS ``ID``, ``CD_MUNICIPIO``, ``NM_MUNICIPIO``, ``DS_CARGO``, ``NR_CANDIDATO``, ``NM_CANDIDATO``, ``NM_SOCIAL_CANDIDATO``, SUM\\(CAST\\(``QT_VOTOS_NOMINAIS`` AS UNSIGNED\\)\\) AS ``QT_VOTOS_NOMINAIS``, ``DS_SIT_TOT_TURNO`` FROM ``votacao_candidato_munzona_2022_RJ`` GROUP BY ``CD_MUNICIPIO``, ``NM_MUNICIPIO``, ``DS_CARGO``, ``NR_CANDIDATO``, ``NM_CANDIDATO``, ``NM_SOCIAL_CANDIDATO``, ``DS_SIT_TOT_TURNO``;\")",
       "PowerShell(podman exec -e \"MYSQL_PWD=root_S3cur3P@ss_2024\" codeigniter55100_mysql mysql -u root codeigniter55100_db -e \"DESCRIBE \\\\`view_votacao_candidato_munzona_2022_RJ_group\\\\`;\")",
       "PowerShell(podman exec -e \"MYSQL_PWD=root_S3cur3P@ss_2024\" codeigniter55100_mysql mysql -u root codeigniter55100_db -e \"DESCRIBE view_votacao_candidato_munzona_2022_RJ_group;\")",
-      "Bash(Get-Date -Format \"yyyy-MM-ddTHH:mm:sszzz\")"
+      "Bash(Get-Date -Format \"yyyy-MM-ddTHH:mm:sszzz\")",
+      "WebSearch",
+      "WebFetch(domain:www.tse.jus.br)"
     ],
     "additionalDirectories": [
       "C:\\Users\\HabilidadeCom"

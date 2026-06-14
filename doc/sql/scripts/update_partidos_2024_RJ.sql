@@ -1,0 +1,37 @@
+UPDATE partidos_2024_RJ
+SET NR_PARTIDO = CASE
+        SG_PARTIDO
+        WHEN 'AGIR' THEN '36'
+        WHEN 'AVANTE' THEN '70'
+        WHEN 'CIDADANIA' THEN '23'
+        WHEN 'DC' THEN '27'
+        WHEN 'MDB' THEN '15'
+        WHEN 'NOVO' THEN '30'
+        WHEN 'PCdoB' THEN '65'
+        WHEN 'PC do B' THEN '65'
+        WHEN 'PCB' THEN '21'
+        WHEN 'PCO' THEN '29'
+        WHEN 'PDT' THEN '12'
+        WHEN 'PL' THEN '22'
+        WHEN 'PMB' THEN '35'
+        WHEN 'PMN' THEN '33'
+        WHEN 'PP' THEN '11'
+        WHEN 'PROS' THEN '90'
+        WHEN 'PRTB' THEN '28'
+        WHEN 'PSB' THEN '40'
+        WHEN 'PSC' THEN '20'
+        WHEN 'PSD' THEN '55'
+        WHEN 'PSDB' THEN '45'
+        WHEN 'PSOL' THEN '50'
+        WHEN 'PSTU' THEN '16'
+        WHEN 'PT' THEN '13'
+        WHEN 'PV' THEN '43'
+        WHEN 'REDE' THEN '18'
+        WHEN 'REPUBLICANOS' THEN '10'
+        WHEN 'SOLIDARIEDADE' THEN '77'
+        WHEN 'UNIÃO' THEN '44'
+        WHEN 'UP' THEN '80'
+        ELSE NULL
+    END
+WHERE NR_PARTIDO IS NULL
+    OR NR_PARTIDO = '0';

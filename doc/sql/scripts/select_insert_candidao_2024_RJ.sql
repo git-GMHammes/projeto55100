@@ -16,4 +16,6 @@ SELECT `ID`,
     `SG_PARTIDO`,
     `NM_PARTIDO`,
     `QT_VOTOS_NOMINAIS_VALIDOS`
-FROM `view_candidato_2024_RJ`;
+FROM `view_candidato_2024_RJ`
+ORDER BY NM_MUNICIPIO ASC,
+    NM_VOTAVEL ASC;
