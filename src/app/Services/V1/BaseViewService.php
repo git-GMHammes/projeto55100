@@ -147,7 +147,7 @@ abstract class BaseViewService
     {
         return [
             'page' => max(1, (int) ($params['page'] ?? 1)),
-            'limit' => min(100, max(1, (int) ($params['limit'] ?? 20))),
+            'limit' => min(1000, max(1, (int) ($params['limit'] ?? 20))),
             'sort' => trim((string) ($params['sort'] ?? 'id')),
             'order' => trim((string) ($params['order'] ?? 'desc')),
         ];

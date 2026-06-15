@@ -607,7 +607,7 @@ abstract class BaseResourceTableController extends BaseController
     {
         return [
             'page' => max(1, (int) ($this->request->getGet('page') ?? 1)),
-            'limit' => min(100, max(1, (int) ($this->request->getGet('limit') ?? 20))),
+            'limit' => min(1000, max(1, (int) ($this->request->getGet('limit') ?? 20))),
             'sort' => trim((string) ($this->request->getGet('sort') ?? 'id')),
             'order' => trim((string) ($this->request->getGet('order') ?? 'desc')),
         ];
