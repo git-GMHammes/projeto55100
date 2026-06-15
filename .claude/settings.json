@@ -47,7 +47,22 @@
       "Bash(Get-Date -Format \"yyyy-MM-ddTHH:mm:sszzz\")",
       "WebSearch",
       "WebFetch(domain:www.tse.jus.br)",
-      "Bash(grep -v \"^\\\\.$\")"
+      "Bash(grep -v \"^\\\\.$\")",
+      "Read(//c/Users/gustavo.hammes/AppData/Local/npm-cache/_logs/**)",
+      "PowerShell(npm config list)",
+      "Read(//c/Users/gustavo.hammes/**)",
+      "PowerShell(Test-NetConnection -ComputerName registry.npmjs.org -Port 443 -InformationLevel Detailed)",
+      "PowerShell(Invoke-WebRequest -Uri \"https://registry.npmjs.org\" -TimeoutSec 10 -UseBasicParsing)",
+      "PowerShell($env:HTTPS_PROXY; $env:HTTP_PROXY; $env:NO_PROXY)",
+      "PowerShell($env:HTTPS_PROXY)",
+      "PowerShell($env:HTTP_PROXY)",
+      "PowerShell($env:NO_PROXY)",
+      "PowerShell($proxy = Get-ItemProperty -Path \"HKCU:\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Internet Settings\"; [PSCustomObject]@{ ProxyEnable = $proxy.ProxyEnable; ProxyServer = $proxy.ProxyServer; ProxyOverride = $proxy.ProxyOverride; AutoConfigURL = $proxy.AutoConfigURL })",
+      "PowerShell(netsh winhttp show proxy)",
+      "PowerShell(npm config set proxy http://proxy.detran.rj.gov.br:80)",
+      "PowerShell(npm config set https-proxy http://proxy.detran.rj.gov.br:80)",
+      "PowerShell(npm config get proxy)",
+      "PowerShell(npm config get https-proxy)"
     ],
     "additionalDirectories": [
       "C:\\Users\\HabilidadeCom",

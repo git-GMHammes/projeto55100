@@ -3,7 +3,7 @@
 Projeto frontend React localizado em:
 
 ```
-src/public/frontend/Projeto55100App/
+C:\xampp\htdocs\php\habilidade\projeto55100\src\public\frontend\Projeto55100App/
 ```
 
 ---
@@ -27,7 +27,7 @@ npm -v
 ## Instalação
 
 ```bash
-cd src/public/frontend/Projeto55100App
+cd C:\xampp\htdocs\php\habilidade\projeto55100\src\public\frontend\Projeto55100App
 npm install
 ```
 
