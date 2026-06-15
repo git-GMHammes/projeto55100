@@ -46,10 +46,12 @@
       "PowerShell(podman exec -e \"MYSQL_PWD=root_S3cur3P@ss_2024\" codeigniter55100_mysql mysql -u root codeigniter55100_db -e \"DESCRIBE view_votacao_candidato_munzona_2022_RJ_group;\")",
       "Bash(Get-Date -Format \"yyyy-MM-ddTHH:mm:sszzz\")",
       "WebSearch",
-      "WebFetch(domain:www.tse.jus.br)"
+      "WebFetch(domain:www.tse.jus.br)",
+      "Bash(grep -v \"^\\\\.$\")"
     ],
     "additionalDirectories": [
-      "C:\\Users\\HabilidadeCom"
+      "C:\\Users\\HabilidadeCom",
+      "C:\\laragon\\www\\Claude\\plano"
     ]
   }
 }
