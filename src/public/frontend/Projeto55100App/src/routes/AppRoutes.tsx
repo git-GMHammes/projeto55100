@@ -2,10 +2,16 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { authPublicRoutes } from './Auth'
 import { usuariosPublicRoutes } from './Usuarios'
 import { homePrivateRoutes } from './Home'
+import { eleicaoPrivateRoutes } from './Eleicao'
 
 const publicRoutes = [
   ...authPublicRoutes,
   ...usuariosPublicRoutes,
+]
+
+const privateRoutes = [
+  ...homePrivateRoutes,
+  ...eleicaoPrivateRoutes,
 ]
 
 function AppRoutes() {
@@ -18,7 +24,7 @@ function AppRoutes() {
         {publicRoutes.map(({ path, element }) => (
           <Route key={path} path={path} element={element} />
         ))}
-        {homePrivateRoutes.map(({ path, element }) => (
+        {privateRoutes.map(({ path, element }) => (
           <Route key={path} path={path} element={element} />
         ))}
       </Routes>

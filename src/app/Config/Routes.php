@@ -66,4 +66,8 @@ $routes->group('api/v1', function ($routes) {
     $routes->group('municipio-rj', function ($routes) {
         require __DIR__ . '/Routes/Api/v1/Eleicao/MunicipioRJ/EndpointTable.php';
     });
+
+    $routes->group('municipio-rj-view', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/Eleicao/MunicipioRJ/EndPointView.php';
+    });
 });

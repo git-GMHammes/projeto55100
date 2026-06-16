@@ -63,7 +63,12 @@
       "PowerShell(npm config set https-proxy http://proxy.detran.rj.gov.br:80)",
       "PowerShell(npm config get proxy)",
       "PowerShell(npm config get https-proxy)",
-      "PowerShell(Remove-Item -Path \"c:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\DEVELOPMANT.md\" -Confirm:$false)"
+      "PowerShell(Remove-Item -Path \"c:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\DEVELOPMANT.md\" -Confirm:$false)",
+      "PowerShell(docker info 2>&1)",
+      "PowerShell(docker context ls)",
+      "PowerShell(docker --context default ps 2>&1)",
+      "PowerShell(docker --context podman-machine-default ps 2>&1)",
+      "PowerShell(Get-Process \"Docker Desktop\" -ErrorAction SilentlyContinue)"
     ],
     "additionalDirectories": [
       "C:\\Users\\HabilidadeCom",

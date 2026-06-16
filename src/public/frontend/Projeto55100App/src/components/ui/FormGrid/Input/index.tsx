@@ -12,6 +12,13 @@ import { TituloField, TituloFieldSchema } from '../titulo'
 import { CnhField, CnhFieldSchema } from '../cnh'
 import { ProcessoField, ProcessoFieldSchema } from '../processo'
 import { RenavamField, RenavamFieldSchema } from '../renavam'
+import { SeiField, SeiFieldSchema } from '../sei'
+import { EmailField, EmailFieldSchema } from '../email'
+import { TextareaField, TextareaFieldSchema } from '../textarea'
+import { SenhaField, SenhaFieldSchema } from '../senha'
+import { RadioField, RadioFieldSchema } from '../radio'
+import { CheckboxField, CheckboxFieldSchema } from '../checkbox'
+import { SelectField, SelectFieldSchema } from '../select'
 
 // ─── Schema de campo texto ────────────────────────────────────────────────────
 
@@ -91,6 +98,13 @@ export type AnyFieldSchema =
   | CnhFieldSchema
   | ProcessoFieldSchema
   | RenavamFieldSchema
+  | SeiFieldSchema
+  | EmailFieldSchema
+  | TextareaFieldSchema
+  | SenhaFieldSchema
+  | RadioFieldSchema
+  | CheckboxFieldSchema
+  | SelectFieldSchema
 
 export interface FormRowSchema {
   fields: AnyFieldSchema[]
@@ -311,6 +325,69 @@ function FormGrid({ schema }: FormGridProps) {
               return (
                 <div key={fieldIndex} className={`col-md-${field.col} mb-1`} hidden={field.hidden}>
                   <RenavamField field={field} />
+                </div>
+              )
+            }
+
+            // ── SEI ───────────────────────────────────────────────────────
+            if (field.type === 'sei') {
+              return (
+                <div key={fieldIndex} className={`col-md-${field.col} mb-1`} hidden={field.hidden}>
+                  <SeiField field={field} />
+                </div>
+              )
+            }
+
+            // ── E-mail ────────────────────────────────────────────────────
+            if (field.type === 'email') {
+              return (
+                <div key={fieldIndex} className={`col-md-${field.col} mb-1`} hidden={field.hidden}>
+                  <EmailField field={field} />
+                </div>
+              )
+            }
+
+            // ── Textarea ──────────────────────────────────────────────────
+            if (field.type === 'textarea') {
+              return (
+                <div key={fieldIndex} className={`col-md-${field.col} mb-1`} hidden={field.hidden}>
+                  <TextareaField field={field} />
+                </div>
+              )
+            }
+
+            // ── Senha (com toggle + doubleField) ──────────────────────────
+            if (field.type === 'senha') {
+              return (
+                <div key={fieldIndex} className={`col-md-${field.col} mb-1`} hidden={field.hidden}>
+                  <SenhaField field={field} />
+                </div>
+              )
+            }
+
+            // ── Radio ─────────────────────────────────────────────────────
+            if (field.type === 'radio') {
+              return (
+                <div key={fieldIndex} className={`col-md-${field.col} mb-1`} hidden={field.hidden}>
+                  <RadioField field={field} />
+                </div>
+              )
+            }
+
+            // ── Checkbox ──────────────────────────────────────────────────
+            if (field.type === 'checkbox') {
+              return (
+                <div key={fieldIndex} className={`col-md-${field.col} mb-1`} hidden={field.hidden}>
+                  <CheckboxField field={field} />
+                </div>
+              )
+            }
+
+            // ── Select (combobox com busca) ───────────────────────────────
+            if (field.type === 'select') {
+              return (
+                <div key={fieldIndex} className={`col-md-${field.col} mb-1`} hidden={field.hidden}>
+                  <SelectField field={field} />
                 </div>
               )
             }

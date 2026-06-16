@@ -3,15 +3,18 @@
 namespace App\Services\V1\Eleicao\MunicipioRJ;
 
 use App\Models\V1\Eleicao\MunicipioRJ\SqlTableModel;
+use App\Models\V1\Eleicao\MunicipioRJ\SqlViewModel;
 use App\Services\V1\BaseTableService;
 
 class Processor extends BaseTableService
 {
     protected SqlTableModel $tableModel;
+    protected SqlViewModel  $viewModel;
 
     public function __construct()
     {
         $this->tableModel = new SqlTableModel();
+        $this->viewModel  = new SqlViewModel();
     }
 
     protected function validateOnCreate(array $data): ?array

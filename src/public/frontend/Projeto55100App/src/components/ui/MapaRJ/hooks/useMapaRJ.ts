@@ -48,6 +48,7 @@ export function useMapaRJ({ dataUrl, shapefileBaseUrl, width, height, highlighte
     async function fetchData() {
       try {
         const dados: DadosMap = await fetch(dataUrl).then(r => r.json())
+        if (cancelado) return
         const shpUrl = shapefileBaseUrl.startsWith('http')
           ? shapefileBaseUrl
           : new URL(shapefileBaseUrl, window.location.href).href
