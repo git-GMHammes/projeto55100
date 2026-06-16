@@ -62,4 +62,8 @@ $routes->group('api/v1', function ($routes) {
     $routes->group('votacao-candidato-munzona-2022-rj-view', function ($routes) {
         require __DIR__ . '/Routes/Api/v1/Eleicao/VotacaoCandidatoMunzona2022RJ/EndPointView.php';
     });
+
+    $routes->group('municipio-rj', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/Eleicao/MunicipioRJ/EndpointTable.php';
+    });
 });

@@ -62,7 +62,8 @@
       "PowerShell(npm config set proxy http://proxy.detran.rj.gov.br:80)",
       "PowerShell(npm config set https-proxy http://proxy.detran.rj.gov.br:80)",
       "PowerShell(npm config get proxy)",
-      "PowerShell(npm config get https-proxy)"
+      "PowerShell(npm config get https-proxy)",
+      "PowerShell(Remove-Item -Path \"c:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\DEVELOPMANT.md\" -Confirm:$false)"
     ],
     "additionalDirectories": [
       "C:\\Users\\HabilidadeCom",

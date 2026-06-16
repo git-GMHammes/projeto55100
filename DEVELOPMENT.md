@@ -1,19 +1,23 @@
-
 # Projeto55100App — Guia de Desenvolvimento
-
-### Desenvolvimento
 
 Projeto frontend React localizado em:
 
 ```
-C:\xampp\htdocs\php\habilidade\projeto55100\src\public\frontend\Projeto55100App/
+C:\laragon\www\php\habilidade\projeto55100\src\public\frontend\Projeto55100App\
 ```
 
+---
+
+## Quick Start
+
 ```bash
-cd C:\laragon\www\php\habilidade\projeto55100\src\public\frontend\Projeto55100App\
+cd C:\laragon\www\php\habilidade\projeto55100\src\public\frontend\Projeto55100App
+npm install
+cp .env.example .env
 npm run dev
- 
 ```
+
+Acesse: **http://localhost:5173**
 
 ---
 
@@ -36,7 +40,7 @@ npm -v
 ## Instalação
 
 ```bash
-cd C:\xampp\htdocs\php\habilidade\projeto55100\src\public\frontend\Projeto55100App
+cd C:\laragon\www\php\habilidade\projeto55100\src\public\frontend\Projeto55100App
 npm install
 ```
 
@@ -56,12 +60,12 @@ Editar `.env` conforme o ambiente local. As variáveis definem, no mínimo, a UR
 
 ## Scripts disponíveis
 
-| Comando       | Descrição                                    | URL padrão                   |
-|---------------|----------------------------------------------|------------------------------|
-| `npm run dev`     | Servidor de desenvolvimento com HMR      | http://localhost:5173        |
-| `npm run build`   | Build de produção em `dist/`             | —                            |
-| `npm run preview` | Visualizar o build de produção localmente | http://localhost:4173       |
-| `npm run lint`    | Verificar erros de lint com ESLint       | —                            |
+| Comando           | Descrição                                     | URL padrão              |
+|-------------------|-----------------------------------------------|-------------------------|
+| `npm run dev`     | Servidor de desenvolvimento com HMR           | http://localhost:5173   |
+| `npm run build`   | Build de produção em `dist/`                  | —                       |
+| `npm run preview` | Visualizar o build de produção localmente     | http://localhost:4173   |
+| `npm run lint`    | Verificar erros de lint com ESLint            | —                       |
 
 ### Desenvolvimento
 
@@ -91,15 +95,15 @@ Serve o conteúdo de `dist/` localmente na porta **4173** para validar o build a
 
 ## Stack
 
-| Tecnologia        | Versão   | Finalidade                          |
-|-------------------|----------|-------------------------------------|
-| React             | 19.2.4   | Framework UI                        |
-| TypeScript        | 6.x      | Tipagem estática                    |
-| Vite              | 8.x      | Bundler e dev server                |
-| React Router DOM  | 7.x      | Roteamento client-side (SPA)        |
-| Bootstrap         | 5.3.8    | Framework CSS principal             |
-| D3                | 7.x      | Visualização de dados / mapa RJ     |
-| shpjs             | 6.x      | Leitura de arquivos Shapefile       |
+| Tecnologia       | Versão | Finalidade                       |
+|------------------|--------|----------------------------------|
+| React            | 19.2.4 | Framework UI                     |
+| TypeScript       | 6.x    | Tipagem estática                 |
+| Vite             | 8.x    | Bundler e dev server             |
+| React Router DOM | 7.x    | Roteamento client-side (SPA)     |
+| Bootstrap        | 5.3.8  | Framework CSS principal          |
+| D3               | 7.x    | Visualização de dados / mapa RJ  |
+| shpjs            | 6.x    | Leitura de arquivos Shapefile    |
 
 ---
 
@@ -171,29 +175,29 @@ Rotas da API seguem o padrão:
 
 Seis variantes disponíveis, configuradas em `src/themes/global/`:
 
-| Tema    | Arquivo          |
-|---------|------------------|
-| Light   | themeLight.ts    |
-| Dark    | themeDark.ts     |
-| Blue    | themeBlue.ts     |
-| Green   | themeGreen.ts    |
-| Purple  | themePurple.ts   |
-| Red     | themeRed.ts      |
+| Tema   | Arquivo        |
+|--------|----------------|
+| Light  | themeLight.ts  |
+| Dark   | themeDark.ts   |
+| Blue   | themeBlue.ts   |
+| Green  | themeGreen.ts  |
+| Purple | themePurple.ts |
+| Red    | themeRed.ts    |
 
 O tema ativo é controlado pelo `ThemeContext` e persiste via `localStorage`.
 
 ---
 
-## Componentes de formulário com validacao brasileira
+## Componentes de formulário com validação brasileira
 
 O `FormGrid` em `src/components/ui/FormGrid/` inclui campos prontos para:
-CEP, CPF, CNPJ, CNH, PIS, Placa, RENAVAM, Processo, Titulo Eleitoral, Telefone, Moeda, Data e Hora.
+CEP, CPF, CNPJ, CNH, PIS, Placa, RENAVAM, Processo, Título Eleitoral, Telefone, Moeda, Data e Hora.
 
 ---
 
-## Observacoes
+## Observações
 
 - O projeto usa **CSS Modules** para escopo de estilos por componente.
-- Variaveis CSS globais estao em `src/assets/styles/variables.css`.
-- A pasta `src/data/ods/` contem arquivos de dados para o mapa RJ (D3 + shpjs).
-- Nenhum framework de testes esta configurado ainda.
+- Variáveis CSS globais estão em `src/assets/styles/variables.css`.
+- A pasta `src/data/ods/` contém arquivos de dados para o mapa RJ (D3 + shpjs).
+- Nenhum framework de testes está configurado ainda.
