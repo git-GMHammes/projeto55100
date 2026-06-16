@@ -68,7 +68,15 @@
       "PowerShell(docker context ls)",
       "PowerShell(docker --context default ps 2>&1)",
       "PowerShell(docker --context podman-machine-default ps 2>&1)",
-      "PowerShell(Get-Process \"Docker Desktop\" -ErrorAction SilentlyContinue)"
+      "PowerShell(Get-Process \"Docker Desktop\" -ErrorAction SilentlyContinue)",
+      "PowerShell(\\(Get-Command composer -ErrorAction SilentlyContinue\\).Source)",
+      "PowerShell(podman restart codeigniter55100_nginx 2>&1)",
+      "PowerShell($r = Invoke-WebRequest -Uri \"http://localhost:55100/api/v1/municipio-rj-view/get-all?page=1&limit=1&sort=mn_nome_cidade&order=asc\" -Method GET -UseBasicParsing; \"Status: $\\($r.StatusCode\\)\"; $r.Headers[\"Access-Control-Allow-Origin\"]; $r.Content | ConvertFrom-Json | Select-Object success,message)",
+      "PowerShell($r = Invoke-WebRequest -Uri \"http://localhost:55100/api/v1/municipio-rj-view/get-all?page=1&limit=1&sort=mn_nome_cidade&order=asc\" -Method OPTIONS -Headers @{\"Origin\"=\"http://localhost:5173\"; \"Access-Control-Request-Method\"=\"GET\"; \"Access-Control-Request-Headers\"=\"Content-Type,Authorization\"} -UseBasicParsing; \"Status: $\\($r.StatusCode\\)\"; \"ACAO: $\\($r.Headers['Access-Control-Allow-Origin']\\)\"; \"METODOS: $\\($r.Headers['Access-Control-Allow-Methods']\\)\")",
+      "Bash(curl -s -o /dev/null -w \"Status: %{http_code}\\\\n\" -X OPTIONS \"http://localhost:55100/api/v1/municipio-rj-view/get-all?page=1&limit=1\" -H \"Origin: http://localhost:5173\" -H \"Access-Control-Request-Method: GET\" -H \"Access-Control-Request-Headers: Content-Type,Authorization\" -D -)",
+      "PowerShell(podman logs codeigniter55100_php --tail 30 2>&1)",
+      "Bash(curl -s -D - -o /dev/null -X OPTIONS \"http://localhost:55100/api/v1/municipio-rj-view/get-all?page=1&limit=1\" -H \"Origin: http://localhost:5173\" -H \"Access-Control-Request-Method: GET\" -H \"Access-Control-Request-Headers: Content-Type,Authorization\")",
+      "Bash(curl -s -D - -o /dev/null \"http://localhost:55100/api/v1/municipio-rj-view/get-all?page=1&limit=1&sort=mn_nome_cidade&order=asc\" -H \"Origin: http://localhost:5173\")"
     ],
     "additionalDirectories": [
       "C:\\Users\\HabilidadeCom",

@@ -47,6 +47,33 @@ function PrivateHome() {
         </button>
       </div>
 
+      {/* Botão flutuante — Lista de Municípios */}
+      <button
+        type="button"
+        title="Lista de Municípios"
+        className="btn btn-sm shadow"
+        onClick={() => navigate('/v1/municipio-rj')}
+        style={{
+          position: 'fixed',
+          bottom: '2rem',
+          left: '2rem',
+          zIndex: 1040,
+          backgroundColor: theme.headerStart,
+          borderColor: theme.headerStart,
+          color: theme.headerText,
+          opacity: 0.65,
+          borderRadius: '0.75rem',
+          padding: '0.45rem 0.75rem',
+          transition: 'opacity 0.2s',
+        }}
+        onMouseEnter={e => ((e.currentTarget as HTMLButtonElement).style.opacity = '1')}
+        onMouseLeave={e => ((e.currentTarget as HTMLButtonElement).style.opacity = '0.65')}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+          <path fillRule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+        </svg>
+      </button>
+
       {/* Card Mapa RJ */}
       <div
         className="card shadow-lg border-0"

@@ -12,8 +12,6 @@ import {
   type MunicipioRJTable,
 } from '../../../../../services/modules/V1/municipioRJService'
 
-// ─── URL do mapa — alterar quando disponível ──────────────────────────────────
-const MAPA_URL = '#'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -254,7 +252,7 @@ function MunicipioRJList() {
     setSaveSuccess(false)
     setLoadingEdit(true)
 
-    const modal = (window as Record<string, unknown>)['bootstrap'] as {
+    const modal = (window as unknown as Record<string, unknown>)['bootstrap'] as {
       Modal: { getOrCreateInstance: (el: Element) => { show(): void } }
     }
     if (modalRef.current && modal?.Modal) {
@@ -366,13 +364,17 @@ function MunicipioRJList() {
             <div style={{ flex: 1 }}>
               <FormGrid schema={searchSchema} />
             </div>
-            <a
-              href={MAPA_URL}
-              className="btn btn-outline-primary fw-semibold"
+            <button
+              type="button"
+              className="btn btn-outline-primary"
+              title="Mapa"
               style={{ whiteSpace: 'nowrap', marginTop: '0.05rem' }}
+              onClick={() => navigate('/v1/home')}
             >
-              Mapa
-            </a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+              </svg>
+            </button>
           </div>
 
           {/* ── Feedback ── */}
@@ -391,7 +393,7 @@ function MunicipioRJList() {
           {/* ── Tabela ── */}
           {!loading && (
             <div className="table-responsive">
-              <table className="table table-sm table-hover table-bordered align-middle mb-0" style={{ fontSize: '0.82rem' }}>
+              <table className="table table-hover align-middle mb-0">
                 <thead className="table-light">
                   <tr>
                     <th style={{ width: 70 }}>Ações</th>
@@ -422,11 +424,14 @@ function MunicipioRJList() {
                           <button
                             type="button"
                             className="btn btn-sm btn-outline-secondary"
+                            title="Editar"
                             data-bs-toggle="modal"
                             data-bs-target="#municipioEditModal"
                             onClick={() => void handleEdit(item.id)}
                           >
-                            Editar
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                              <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                            </svg>
                           </button>
                         </td>
                         <td>{fmt(item.mn_nome_cidade)}</td>
@@ -462,11 +467,16 @@ function MunicipioRJList() {
         <div className="modal-dialog modal-xl modal-dialog-scrollable">
           <div className="modal-content">
 
-            <div className="modal-header">
-              <h5 className="modal-title" id="municipioEditModalLabel">
+            <div
+              className="modal-header"
+              style={{
+                background: `linear-gradient(135deg, ${theme.headerStart} 0%, ${theme.headerEnd} 100%)`,
+              }}
+            >
+              <h5 className="modal-title fw-semibold" id="municipioEditModalLabel" style={{ color: theme.headerText, letterSpacing: '0.03em' }}>
                 Editar Município {editData ? `— ${editData.nome_cidade ?? ''}` : ''}
               </h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Fechar" />
+              <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar" />
             </div>
 
             <div className="modal-body">
