@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import FormGrid, { type FormGridSchema } from '../../../../../components/ui/FormGrid/Input'
 import { getActiveTheme } from '../../../../../themes/global'
 import { clearSession, getUser } from '../../../../../services/modules/V1/authService/session'
+import { PrivateTopbar } from '../../../../../components/layout/PrivateTopbar'
 import {
   getAllView,
   searchView,
@@ -147,26 +148,11 @@ function MandatarioRJList() {
         padding: '1.5rem',
       }}
     >
-      {/* ── Barra superior ── */}
-      <div className="d-flex justify-content-between align-items-center mb-3 px-1">
-        <span style={{ color: theme.headerText, fontSize: '0.9rem' }}>
-          <strong>Usuário:</strong> {user?.um_user ?? '—'}
-        </span>
-        <button
-          type="button"
-          className="btn btn-sm fw-semibold"
-          onClick={handleLogout}
-          style={{
-            backgroundColor: theme.btnBg,
-            borderColor: theme.btnBg,
-            color: theme.btnText,
-            borderRadius: '0.5rem',
-            padding: '0.35rem 1.2rem',
-          }}
-        >
-          Sair
-        </button>
-      </div>
+      <PrivateTopbar
+        username={user?.um_user ?? '—'}
+        onLogout={handleLogout}
+        theme={theme}
+      />
 
       {/* ── Card principal ── */}
       <div className="card shadow-lg border-0" style={{ borderRadius: '1rem', overflow: 'hidden' }}>

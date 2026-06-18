@@ -2,12 +2,19 @@ import React from 'react'
 import FormGrid, { type FormGridSchema } from '../../../../../components/ui/FormGrid/Input'
 import type { MandatarioRJTable } from '../../../../../services/modules/V1/mandatarioRJService'
 import type { UseMandatarioRJEditReturn } from './useMandatarioRJEdit'
+import { getToken } from '../../../../../services/modules/V1/authService/session'
+import { APP_BASE_HOST, APP_VERSION } from '../../../../../config/constants'
 
 // ─── Schema do formulário ─────────────────────────────────────────────────────
 
-function buildEditSchema(data: MandatarioRJTable | null): FormGridSchema {
+function buildEditSchema(data: MandatarioRJTable | null, authToken: string | null): FormGridSchema {
   const s = (v: string | number | null | undefined) =>
     v !== null && v !== undefined ? String(v) : ''
+  const v = APP_VERSION.toLowerCase()
+  const municipioBase   = `${APP_BASE_HOST}/api/${v}/municipio-rj`
+  const municipioSrc    = `${municipioBase}/get-no-pagination?sort=nome_cidade&order=asc`
+  const municipioGetSrc = `${municipioBase}/get`
+  const municipioFindSrc = `${municipioBase}/find`
 
   return {
     rows: [
@@ -22,7 +29,22 @@ function buildEditSchema(data: MandatarioRJTable | null): FormGridSchema {
         fields: [
           { col: 4, label: 'Cargo Político', id: 'cargo_politico', name: 'cargo_politico', value: s(data?.cargo_politico) },
           { col: 4, label: 'Partido Político', id: 'partido_politico', name: 'partido_politico', value: s(data?.partido_politico) },
-          { col: 4, label: 'Município do Mandato', id: 'municipio_mandato', name: 'municipio_mandato', value: s(data?.municipio_mandato) },
+          {
+            type: 'select' as const,
+            col: 4,
+            label: 'Município do Mandato',
+            id: 'municipio_mandato',
+            name: 'municipio_mandato',
+            src: municipioSrc,
+            getSrc: municipioGetSrc,
+            findSrc: municipioFindSrc,
+            findColumn: 'nome_cidade',
+            valueKey: 'cd_tse',
+            labelKey: ['cd_tse', 'nome_cidade'],
+            maxVisible: 100,
+            value: s(data?.municipio_mandato),
+            authToken: authToken ?? undefined,
+          },
         ],
       },
       {
@@ -89,7 +111,7 @@ function MandatarioRJEditModal({
   handleSave,
   theme,
 }: MandatarioRJEditModalProps) {
-  const editSchema = buildEditSchema(editData)
+  const editSchema = buildEditSchema(editData, getToken())
   const isCreate = mode === 'create'
 
   return (

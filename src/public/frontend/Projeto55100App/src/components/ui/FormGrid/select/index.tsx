@@ -19,8 +19,8 @@ export interface SelectFieldSchema {
   src?: string
   /** Chave do objeto usada como value (padrão: 'id') */
   valueKey?: string
-  /** Chave do objeto exibida como label (padrão: 'nome') */
-  labelKey?: string
+  /** Chave(s) exibida(s) como label — string simples ou array de chaves unidas por ' — ' (padrão: 'nome') */
+  labelKey?: string | string[]
   /** Template de label: "{campo1} - {campo2}" (sobrepõe labelKey) */
   labelTemplate?: string
   /** Máximo de itens visíveis no dropdown (padrão: 150) */
@@ -37,6 +37,12 @@ export interface SelectFieldSchema {
   tabIndex?: number
   /** Authorization header para requests autenticados (Bearer token) */
   authToken?: string
+  /** URL do POST find — fallback quando filtro local retorna vazio: POST { [findColumn]: query } */
+  findSrc?: string
+  /** Coluna enviada no body do POST findSrc */
+  findColumn?: string
+  /** URL base do GET por ID: {getSrc}/{id} — usado quando o valor pré-selecionado não está no cache local */
+  getSrc?: string
   /** Disparado quando o valor muda */
   onChange?: (value: string, item: SelectOptionItem | null) => void
   onBlur?: React.FocusEventHandler<HTMLInputElement>
@@ -48,6 +54,9 @@ function getLabel(item: SelectOptionItem, field: SelectFieldSchema): string {
   const { labelTemplate, labelKey = 'nome' } = field
   if (labelTemplate) {
     return labelTemplate.replace(/\{(\w+)\}/g, (_, k) => String(item[k] ?? ''))
+  }
+  if (Array.isArray(labelKey)) {
+    return labelKey.map(k => String(item[k] ?? '')).filter(Boolean).join(' — ')
   }
   return String(item[labelKey] ?? '')
 }
@@ -69,6 +78,10 @@ function filterData(
     return lbl.includes(q) || val.includes(q) ||
       Object.values(item).some(v => typeof v === 'string' && v.toLowerCase().includes(q))
   })
+}
+
+function buildAuthHeaders(authToken?: string): Record<string, string> {
+  return authToken ? { Authorization: `Bearer ${authToken}` } : {}
 }
 
 // ─── Componente ───────────────────────────────────────────────────────────────
@@ -93,10 +106,7 @@ export function SelectField({ field }: SelectFieldProps) {
   useEffect(() => {
     if (!field.src) return
     setIsLoading(true)
-    const headers: HeadersInit = field.authToken
-      ? { Authorization: `Bearer ${field.authToken}` }
-      : {}
-    fetch(field.src, { headers })
+    fetch(field.src, { headers: buildAuthHeaders(field.authToken) })
       .then(r => r.json())
       .then(json => {
         const data: SelectOptionItem[] = Array.isArray(json)
@@ -108,12 +118,64 @@ export function SelectField({ field }: SelectFieldProps) {
       .finally(() => setIsLoading(false))
   }, [field.src])
 
-  // Sincroniza label quando allData ou value mudam
+  // Sincroniza label quando allData ou value mudam — com fallback getSrc quando valor não está no cache
   useEffect(() => {
     if (!effectiveValue) { setSelectedLabel(''); return }
     const found = allData.find(item => getValue(item, field) === effectiveValue)
-    if (found) setSelectedLabel(getLabel(found, field))
+    if (found) {
+      setSelectedLabel(getLabel(found, field))
+      return
+    }
+    if (!field.getSrc) return
+    fetch(`${field.getSrc}/${encodeURIComponent(effectiveValue)}`, {
+      headers: buildAuthHeaders(field.authToken),
+    })
+      .then(r => r.json())
+      .then((json: unknown) => {
+        const raw = json as Record<string, unknown>
+        const item = (raw['data'] as SelectOptionItem | undefined) ?? null
+        if (!item) return
+        setAllData(prev => {
+          const val = getValue(item, field)
+          if (prev.some(d => getValue(d, field) === val)) return prev
+          return [...prev, item]
+        })
+        setSelectedLabel(getLabel(item, field))
+      })
+      .catch(e => console.warn('[SelectField] getSrc falhou:', field.getSrc, e))
   }, [effectiveValue, allData])
+
+  // POST fallback findSrc quando filtro local retorna vazio
+  useEffect(() => {
+    if (!searchText.trim() || !field.findSrc || !field.findColumn) return
+    if (effectiveValue) return
+    if (filterData(allData, searchText, field).length > 0) return
+
+    fetch(field.findSrc, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...buildAuthHeaders(field.authToken) },
+      body: JSON.stringify({ [field.findColumn]: searchText.trim() }),
+    })
+      .then(r => r.json())
+      .then((json: unknown) => {
+        const raw = json as Record<string, unknown>
+        const items: SelectOptionItem[] = Array.isArray(json)
+          ? json
+          : ((raw['data'] as SelectOptionItem[] | undefined) ??
+             (raw['items'] as SelectOptionItem[] | undefined) ??
+             [])
+        if (items.length === 0) return
+        setAllData(prev => {
+          const next = [...prev]
+          for (const item of items) {
+            const val = getValue(item, field)
+            if (!next.some(d => getValue(d, field) === val)) next.push(item)
+          }
+          return next
+        })
+      })
+      .catch(e => console.warn('[SelectField] findSrc falhou:', field.findSrc, e))
+  }, [searchText]) // allData intencional fora das deps: usamos o snapshot do momento do disparo
 
   const validarRequired = useCallback((val: string) => {
     if (field.required && !val) {

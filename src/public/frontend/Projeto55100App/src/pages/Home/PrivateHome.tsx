@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { clearSession, getUser } from '../../services/modules/V1/authService/session'
 import { getActiveTheme } from '../../themes/global'
 import { MapaRJ } from '../../components/ui'
+import { PrivateTopbar } from '../../components/layout/PrivateTopbar'
 
 function PrivateHome() {
   const navigate = useNavigate()
@@ -21,31 +22,11 @@ function PrivateHome() {
         padding: '1.5rem',
       }}
     >
-      {/* Barra superior */}
-      <div className="d-flex justify-content-between align-items-center mb-3 px-1">
-        <span style={{ color: theme.headerText, fontSize: '0.9rem' }}>
-          <strong>Usuário:</strong> {user?.um_user ?? 'admin'}
-          &nbsp;&nbsp;|&nbsp;&nbsp;
-          <strong>Perfil:</strong> {user?.uc_profile ?? 'admin'}
-        </span>
-        <button
-          type="button"
-          className="btn btn-sm fw-semibold"
-          onClick={handleLogout}
-          style={{
-            backgroundColor: theme.btnBg,
-            borderColor: theme.btnBg,
-            color: theme.btnText,
-            borderRadius: '0.5rem',
-            padding: '0.35rem 1.2rem',
-            transition: 'background-color 0.2s',
-          }}
-          onMouseEnter={e => ((e.currentTarget as HTMLButtonElement).style.backgroundColor = theme.btnBgHover)}
-          onMouseLeave={e => ((e.currentTarget as HTMLButtonElement).style.backgroundColor = theme.btnBg)}
-        >
-          Sair
-        </button>
-      </div>
+      <PrivateTopbar
+        username={user?.um_user ?? 'admin'}
+        onLogout={handleLogout}
+        theme={theme}
+      />
 
       {/* Botão flutuante — Lista de Municípios */}
       <button
