@@ -70,4 +70,16 @@ $routes->group('api/v1', function ($routes) {
     $routes->group('municipio-rj-view', function ($routes) {
         require __DIR__ . '/Routes/Api/v1/Eleicao/MunicipioRJ/EndPointView.php';
     });
+
+    $routes->group('mandatario-rj', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/Eleicao/MandatarioRJ/EndpointTable.php';
+    });
+
+    $routes->group('mandatario-rj-view', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/Eleicao/MandatarioRJ/EndPointView.php';
+    });
+
+    $routes->group('municipio-ibge-tse', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/Eleicao/MunicipioIbgeTse/EndpointTable.php';
+    });
 });

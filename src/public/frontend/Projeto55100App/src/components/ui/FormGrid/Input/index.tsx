@@ -108,6 +108,7 @@ export type AnyFieldSchema =
 
 export interface FormRowSchema {
   fields: AnyFieldSchema[]
+  sectionTitle?: string
 }
 
 export interface FormGridSchema {
@@ -192,7 +193,18 @@ function FormGrid({ schema }: FormGridProps) {
   return (
     <>
       {schema.rows.map((row, rowIndex) => (
-        <div key={rowIndex} className="row g-3">
+        <React.Fragment key={rowIndex}>
+          {row.sectionTitle && (
+            <div className="col-12 mt-3 mb-1">
+              <h6
+                className="text-uppercase fw-bold pb-1 mb-0"
+                style={{ fontSize: '0.75rem', letterSpacing: '0.08em', color: '#0d6efd', borderBottom: '2px solid #0d6efd' }}
+              >
+                {row.sectionTitle}
+              </h6>
+            </div>
+          )}
+          <div className="row g-3">
           {row.fields.map((field, fieldIndex) => {
             const chave = field.id ?? `r${rowIndex}f${fieldIndex}`
 
@@ -455,7 +467,8 @@ function FormGrid({ schema }: FormGridProps) {
               </div>
             )
           })}
-        </div>
+          </div>
+        </React.Fragment>
       ))}
     </>
   )
