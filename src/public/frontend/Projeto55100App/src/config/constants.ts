@@ -1,8 +1,8 @@
 export const SYSTEM_CODE = 1
 export const APP_VERSION = 'V1'
 
-export const ENVIRONMENT = 'development'
-// export const ENVIRONMENT = 'production'
+// export const ENVIRONMENT = 'development'
+export const ENVIRONMENT = 'production'
 // export const ENVIRONMENT = 'test'
 
 // Em produção/test: backend em habilidade.com/projeto55100/src/public

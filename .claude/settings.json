@@ -81,7 +81,11 @@
       "PowerShell(Get-ChildItem -Path \"c:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\src\\\\public\\\\frontend\\\\Projeto55100App\\\\src\\\\pages\" -Recurse | Where-Object {$_.PSIsContainer -eq $false} | Select-Object -Property Name, FullName | ForEach-Object {$_.FullName.Replace\\('C:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\src\\\\public\\\\frontend\\\\Projeto55100App\\\\src\\\\pages\\\\', ''\\)} | Sort-Object)",
       "PowerShell(Get-ChildItem -Path \"c:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\src\\\\public\\\\frontend\\\\Projeto55100App\\\\src\\\\routes\" -Recurse | Where-Object {$_.PSIsContainer -eq $false} | Select-Object -Property Name, FullName | ForEach-Object {$_.FullName.Replace\\('C:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\src\\\\public\\\\frontend\\\\Projeto55100App\\\\src\\\\routes\\\\', ''\\)} | Sort-Object)",
       "PowerShell(cd \"c:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\src\\\\public\\\\frontend\\\\Projeto55100App\"; npx tsc --noEmit --project tsconfig.json 2>&1 | Where-Object { $_ -match \"MandatarioRJEditModal\" })",
-      "PowerShell(cd \"c:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\src\\\\public\\\\frontend\\\\Projeto55100App\"; npx tsc --noEmit --project tsconfig.json 2>&1 | Where-Object { $_ -match \"select.index\" })"
+      "PowerShell(cd \"c:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\src\\\\public\\\\frontend\\\\Projeto55100App\"; npx tsc --noEmit --project tsconfig.json 2>&1 | Where-Object { $_ -match \"select.index\" })",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git reset *)"
     ],
     "additionalDirectories": [
       "C:\\Users\\HabilidadeCom",
