@@ -1,6 +1,6 @@
 <?php
 namespace Config;
-exit("<hr/>");
+// exit("<hr/>");
 
 use CodeIgniter\Database\Config;
 
@@ -196,8 +196,8 @@ class Database extends Config
     {
         parent::__construct();
         
-        exit("<hr/>");
-        exit("<hr/>");
+        // exit("<hr/>");
+        // exit("<hr/>");
 
         $this->banco1 = [
             'DSN' => '',
@@ -245,12 +245,12 @@ class Database extends Config
             ],
         ];
 
-        echo "<hr/>";
-        echo "<pre>";
-        print_r($this->banco1);
-        echo "</pre>";
-        echo "<hr/>";
-        exit("<hr/>");
+        // echo "<hr/>";
+        // echo "<pre>";
+        // print_r($this->banco1);
+        // echo "</pre>";
+        // echo "<hr/>";
+        // exit("<hr/>");
 
         // Ensure that we always set the database group to 'tests' if
         // we are currently running an automated test suite, so that
