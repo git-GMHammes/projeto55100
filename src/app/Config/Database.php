@@ -242,6 +242,14 @@ class Database extends Config
             ],
         ];
 
+        echo "<hr/>";
+        echo "<pre>";
+        print_r($this->banco1);
+        echo "</pre>";
+        echo "<hr/>";
+        exit("<hr/>");
+        exit("<hr/>");
+
         // Ensure that we always set the database group to 'tests' if
         // we are currently running an automated test suite, so that
         // we don't overwrite live data on accident.
