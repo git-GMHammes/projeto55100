@@ -53,6 +53,8 @@ require FCPATH . '../app/Config/Paths.php';
 
 $paths = new Paths();
 
+$_SERVER['CI_ENVIRONMENT'] = 'development';
+
 // LOAD THE FRAMEWORK BOOTSTRAP FILE
 require $paths->systemDirectory . '/Boot.php';
 

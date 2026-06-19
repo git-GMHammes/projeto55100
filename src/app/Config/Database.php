@@ -1,6 +1,6 @@
 <?php
-
 namespace Config;
+exit("<hr/>");
 
 use CodeIgniter\Database\Config;
 
@@ -197,6 +197,8 @@ class Database extends Config
         parent::__construct();
         
         exit("<hr/>");
+        exit("<hr/>");
+
         $this->banco1 = [
             'DSN' => '',
             'hostname' => defined('D7E6F5A4B3C2D1E0F9G8H7I6J5K4L3M2')
