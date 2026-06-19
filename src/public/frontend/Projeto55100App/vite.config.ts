@@ -7,6 +7,9 @@ export default defineConfig({
   base: '/frontend/dist/',
   server: {
     port: 5173,
+    proxy: {
+      '/maparj': 'http://localhost:55100',
+    },
   },
   build: {
     outDir: '../dist',

@@ -85,7 +85,8 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
-      "Bash(git reset *)"
+      "Bash(git reset *)",
+      "PowerShell(Remove-Item -Path \"C:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\src\\\\public\\\\frontend\\\\maparj\" -Recurse -Force -Confirm:$false)"
     ],
     "additionalDirectories": [
       "C:\\Users\\HabilidadeCom",

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { authPublicRoutes } from './Auth'
 import { usuariosPublicRoutes } from './Usuarios'
 import { homePrivateRoutes } from './Home'
@@ -16,7 +16,7 @@ const privateRoutes = [
 
 function AppRoutes() {
   return (
-    <BrowserRouter basename="/frontend/dist">
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/v1/login" replace />} />
         <Route path="/v1" element={<Navigate to="/v1/login" replace />} />
@@ -28,7 +28,7 @@ function AppRoutes() {
           <Route key={path} path={path} element={element} />
         ))}
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
