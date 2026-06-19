@@ -23,28 +23,34 @@ O diretório `src/vendor/` gerado deve ser incluído no envio FTP.
 ### 2. Buildar o frontend React (local)
 
 ```bash
-cd <pasta-do-projeto-react>
+cd C:\laragon\www\php\habilidade\projeto55100\src\public\frontend\Projeto55100App
 npm install
+
+cd C:\laragon\www\php\habilidade\projeto55100\src\public\frontend\Projeto55100App
 npm run build
-```
-
-Copiar o conteúdo de `dist/` para `src/public/` (ou subpasta definida no projeto).
-
-### 3. Configurar `.env` de produção
-
-Copiar `src/env` para `src/.env` e preencher com as credenciais de produção:
+ 
 
 ```
-CI_ENVIRONMENT = production
-app.baseURL = 'https://seu-dominio.com/'
-database.default.hostname = localhost
-database.default.database = nome_do_banco
-database.default.username = usuario
-database.default.password = senha
-database.default.DBDriver = MySQLi
+
+O build é gerado em `src/public/frontend/dist/`.
+
+### 3. Configurar variáveis de produção
+
+O hosting bloqueia `putenv()` via `disable_functions` — **`.env` não funciona em produção e não deve ser enviado ao servidor**.
+
+Definir as variáveis de ambiente via `src/public/.htaccess`:
+
+```apache
+SetEnv CI_ENVIRONMENT production
+SetEnv app.baseURL https://seu-dominio.com/
+SetEnv database.default.hostname localhost
+SetEnv database.default.database nome_do_banco
+SetEnv database.default.username usuario
+SetEnv database.default.password senha
+SetEnv database.default.DBDriver MySQLi
 ```
 
-O arquivo `.env` **não deve ser versionado**.
+O arquivo `src/public/.htaccess` **não deve ser versionado** quando contiver credenciais.
 
 ### 4. Enviar via FTP
 
@@ -56,7 +62,6 @@ Pastas e arquivos **obrigatórios**:
 | `src/system/`       | Core do CodeIgniter 4              |
 | `src/vendor/`       | Dependências PHP pré-instaladas    |
 | `src/public/`       | Webroot (index.php, assets, build React) |
-| `src/.env`          | Configuração de produção           |
 
 Pastas a **não enviar**:
 

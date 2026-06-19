@@ -16,7 +16,7 @@ const privateRoutes = [
 
 function AppRoutes() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/frontend/dist">
       <Routes>
         <Route path="/" element={<Navigate to="/v1/login" replace />} />
         <Route path="/v1" element={<Navigate to="/v1/login" replace />} />
