@@ -86,7 +86,10 @@
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
       "Bash(git reset *)",
-      "PowerShell(Remove-Item -Path \"C:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\src\\\\public\\\\frontend\\\\maparj\" -Recurse -Force -Confirm:$false)"
+      "PowerShell(Remove-Item -Path \"C:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\src\\\\public\\\\frontend\\\\maparj\" -Recurse -Force -Confirm:$false)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(gh workflow *)",
+      "PowerShell(gh workflow list --repo git-GMHammes/projeto55100 2>&1)"
     ],
     "additionalDirectories": [
       "C:\\Users\\HabilidadeCom",

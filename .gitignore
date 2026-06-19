@@ -9,3 +9,5 @@ src/writable/*
 doc/sql/dunp/202606101032_dump.sql
 doc/sql/dunp/202606101032_dump_insert.sql
 src/public/frontend/dist/*
+src/.env
+.claude/settings.json
