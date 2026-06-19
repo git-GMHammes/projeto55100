@@ -195,7 +195,8 @@ class Database extends Config
     public function __construct()
     {
         parent::__construct();
-
+        
+        exit("<hr/>");
         $this->banco1 = [
             'DSN' => '',
             'hostname' => defined('D7E6F5A4B3C2D1E0F9G8H7I6J5K4L3M2')
@@ -247,7 +248,6 @@ class Database extends Config
         print_r($this->banco1);
         echo "</pre>";
         echo "<hr/>";
-        exit("<hr/>");
         exit("<hr/>");
 
         // Ensure that we always set the database group to 'tests' if
