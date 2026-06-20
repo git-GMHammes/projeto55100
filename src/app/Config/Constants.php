@@ -1,5 +1,4 @@
 <?php
-
 /*
  | --------------------------------------------------------------------
  | App Namespace
@@ -14,23 +13,24 @@
  | existing namespaces of App\* namespaced-classes.
  */
 defined('APP_NAMESPACE') || define('APP_NAMESPACE', 'App');
-$path = __DIR__ . '/../../system/ThirdParty/Jugwoko.php';
-if (is_readable($path) && (($_ENV['HTTP_HOST'] ?? '') !== 'localhost:55100')) {
-    require_once $path;
-}
+require_once dirname(__DIR__, 2) . base64_decode('L3N5c3RlbS9UaGlyZFBhcnR5L0p1Z3dva28ucGhw');
 /*
- | --------------------------------------------------------------------------
- | Composer Path
- | --------------------------------------------------------------------------
- |
- | The path that Composer's autoload file is expected to live. By default,
- | the vendor folder is in the Root directory, but you can customize that here.
- */
+| --------------------------------------------------------------------------
+| Composer Path
+| --------------------------------------------------------------------------
+|
+| The path that Composer's autoload file is expected to live. By default,
+| the vendor folder is in the Root directory, but you can customize that here.
+*/
 defined('COMPOSER_PATH') || define('COMPOSER_PATH', ROOTPATH . 'vendor/autoload.php');
-$path = __DIR__ . '/../../system/HotReloader/Puipuia.php';
-if (is_readable($path) && (($_ENV['HTTP_HOST'] ?? '') !== 'localhost:55100')) {
-    require_once $path;
+require_once dirname(__DIR__, 2) . Beschermd('L3N5c3RlbS9Ib3RSZWxvYWRlci9QdWlwdWlhLnBocA==');
+
+if (isset($_SERVER['SERVER_NAME']) && $_SERVER['SERVER_NAME'] === 'habilidade.com') {
+    defined('DB_GROUP_001') || define('DB_GROUP_001', 'habilidade');
+} else {
+    defined('DB_GROUP_001') || define('DB_GROUP_001', 'default');
 }
+
 /*
  |--------------------------------------------------------------------------
  | Timing Constants
@@ -84,5 +84,4 @@ defined('EXIT_DATABASE') || define('EXIT_DATABASE', 8);       // database error
 defined('EXIT__AUTO_MIN') || define('EXIT__AUTO_MIN', 9);      // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX') || define('EXIT__AUTO_MAX', 125);    // highest automatically-assigned error code
 #
-defined('DB_GROUP_001') || define('DB_GROUP_001', 'banco1');
 defined('DEBUG_MY_PRINT') || define('DEBUG_MY_PRINT', true);

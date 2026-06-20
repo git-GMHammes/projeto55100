@@ -51,6 +51,38 @@ class Database extends Config
         ],
     ];
 
+    /**
+     * The Habilidade database connection.
+     *
+     * @var array<string, mixed>
+     */
+    public array $habilidade = [
+        'DSN' => '',
+        'hostname' => D7E6F5A4B3C2D1E0F9G8H7I6J5K4L3M2,
+        'username' => D7E6D5C4B3A201F9E8D7C6B5A4F3E2D1,
+        'password' => A9F8E7D6C5B4A3F2E1D0C9B8A7F6E5D4,
+        'database' => F1E0D9C8B7A6F5E4D3C2B1A0F9E8D7C6,
+        'DBDriver' => A0B1C2D3E4F50718293A4B5C6D7E8F90,
+        'DBPrefix' => '',
+        'pConnect' => false,
+        'DBDebug' => true,
+        'charset' => 'utf8mb4',
+        'DBCollat' => 'utf8mb4_general_ci',
+        'swapPre' => '',
+        'encrypt' => false,
+        'compress' => false,
+        'strictOn' => false,
+        'failover' => [],
+        'port' => A4F8B2C6E1D9A5F3C7E0B8D4A2F6C9E5,
+        'numberNative' => false,
+        'foundRows' => false,
+        'dateFormat' => [
+            'date' => 'Y-m-d',
+            'datetime' => 'Y-m-d H:i:s',
+            'time' => 'H:i:s',
+        ],
+    ];
+
     //    /**
     //     * Sample database connection for SQLite3.
     //     *
@@ -195,63 +227,6 @@ class Database extends Config
     public function __construct()
     {
         parent::__construct();
-        
-        // exit("<hr/>");
-        // exit("<hr/>");
-
-        $this->banco1 = [
-            'DSN' => '',
-            'hostname' => defined('D7E6F5A4B3C2D1E0F9G8H7I6J5K4L3M2')
-                ? D7E6F5A4B3C2D1E0F9G8H7I6J5K4L3M2
-                : (getenv('DB_HOST') ?: 'mysql'),
-
-            'username' => defined('D7E6D5C4B3A201F9E8D7C6B5A4F3E2D1')
-                ? D7E6D5C4B3A201F9E8D7C6B5A4F3E2D1
-                : (getenv('DB_USERNAME') ?: 'root'),
-
-            'password' => defined('A9F8E7D6C5B4A3F2E1D0C9B8A7F6E5D4')
-                ? A9F8E7D6C5B4A3F2E1D0C9B8A7F6E5D4
-                : (getenv('DB_PASSWORD') ?: 'root_S3cur3P@ss_2024'),
-
-            'database' => defined('F1E0D9C8B7A6F5E4D3C2B1A0F9E8D7C6')
-                ? F1E0D9C8B7A6F5E4D3C2B1A0F9E8D7C6
-                : (getenv('DB_DATABASE') ?: 'codeigniter55100_db'),
-
-            'DBDriver' => defined('A0B1C2D3E4F50718293A4B5C6D7E8F90')
-                ? A0B1C2D3E4F50718293A4B5C6D7E8F90
-                : (getenv('DB_CONNECTION') ?: 'MySQLi'),
-
-            'DBPrefix' => '',
-            'pConnect' => false,
-            'DBDebug' => (ENVIRONMENT !== 'production'),
-            'charset' => 'utf8mb4',
-            'DBCollat' => 'utf8mb4_general_ci',
-            'swapPre' => '',
-            'encrypt' => false,
-            'compress' => false,
-            'strictOn' => false,
-            'failover' => [],
-
-            'port' => defined('A4F8B2C6E1D9A5F3C7E0B8D4A2F6C9E5')
-                ? A4F8B2C6E1D9A5F3C7E0B8D4A2F6C9E5
-                : (int) (getenv('DB_PORT') ?: 3306),
-
-            'numberNative' => false,
-            'foundRows' => false,
-            'dateFormat' => [
-                'date' => 'Y-m-d',
-                'datetime' => 'Y-m-d H:i:s',
-                'time' => 'H:i:s',
-            ],
-        ];
-
-        // echo "<hr/>";
-        // echo "<pre>";
-        // print_r($this->banco1);
-        // echo "</pre>";
-        // echo "<hr/>";
-        // exit("<hr/>");
-
         // Ensure that we always set the database group to 'tests' if
         // we are currently running an automated test suite, so that
         // we don't overwrite live data on accident.
