@@ -26,7 +26,7 @@ clear
 cd C:\laragon\www\php\habilidade\projeto55100
 podman machine stop
 podman machine start
-
+ 
 cd C:\laragon\www\php\habilidade\projeto55100
 podman-compose up -d --build
  
