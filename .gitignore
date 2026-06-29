@@ -12,3 +12,4 @@ src/public/frontend/dist/*
 src/.env
 .claude/settings.json
 src/*
+src/
