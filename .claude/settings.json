@@ -89,7 +89,13 @@
       "PowerShell(Remove-Item -Path \"C:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\src\\\\public\\\\frontend\\\\maparj\" -Recurse -Force -Confirm:$false)",
       "Bash(echo \"EXIT:$?\")",
       "Bash(gh workflow *)",
-      "PowerShell(gh workflow list --repo git-GMHammes/projeto55100 2>&1)"
+      "PowerShell(gh workflow list --repo git-GMHammes/projeto55100 2>&1)",
+      "PowerShell(docker compose ps 2>&1)",
+      "PowerShell(Invoke-WebRequest -Uri \"http://localhost:55100/maparj/municipios_rj.json\" -UseBasicParsing -TimeoutSec 5 | Select-Object StatusCode, @{N='Size';E={$_.RawContentLength}} 2>&1)",
+      "PowerShell(podman ps 2>&1)",
+      "PowerShell(Invoke-WebRequest -Uri \"http://localhost:55100/\" -UseBasicParsing -TimeoutSec 5)",
+      "PowerShell(podman exec codeigniter55100_nginx ls /var/www/html/public/maparj/ 2>&1)",
+      "PowerShell(podman exec codeigniter55100_nginx wget -qO- \"http://localhost/maparj/municipios_rj.json\" 2>&1)"
     ],
     "additionalDirectories": [
       "C:\\Users\\HabilidadeCom",
